@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:yourapp="http://schemas.android.com/apk/res-auto"
+    tools:context=".BorrarUsuarios">
+
+
+    <item
+
+        android:id="@+id/menu_borrar_muchos"
+        android:title="@string/menu_borrar_muchos"
+        yourapp:showAsAction="always"
+        android:orderInCategory="1"
+        android:icon="@drawable/eliminar"
+        />
+<!--
+android:icon="@drawable/amigos"
+-->
+
+</menu>

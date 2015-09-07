@@ -1,0 +1,75 @@
+<resources>
+
+    <string name="app_name">Agenda clientes</string>
+
+
+    <string name="hello_world">Hello world!</string>
+
+
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_alta_usuarios">Alta nuevo cliente</string>
+    <string name="Name">Nombre</string>
+    <string name="Apell">Apellidos</string>
+    <string name="Adress">Dirección</string>
+    <string name="Telephone">Teléfono</string>
+    <string name="Email">email</string>
+    <string name="Cancel">Cancelar</string>
+    <string name="Save">Guardar</string>
+    <string name="menu_editar">Editar cliente</string>
+    <string name="menu_visualizar">Ver datos cliente</string>
+    <string name="menu_eliminar">Eliminar</string>
+    <string name="menu_llamar">Llamar al cliente</string>
+    <string name="menu_crear">NUEVO CONTACTO</string>
+    <string name="menu_borrar_muchos">ELIMINAR</string>
+    <string name="menu_email">Enviar correo</string>
+    <string name="menu_compartir">Compartir</string>
+    <string name="menu_buscar">Buscar contacto</string>
+    <string name="menu_traer_contactos">Importar tu agenda Android</string>
+    <string name="menu_borrar_todos">Borrar todos los clientes</string>
+    <string name="usuarios_editar_titulo">Editar Clientes</string>
+    <string name="usuarios_crear_titulo">Nuevo cliente</string>
+    <string name="title_activity_modificar_usuarios">Modificar clientes</string>
+    <string name="lista_vacia">Sin Datos</string>
+    <string name="agenda_crear_titulo">Alta Nuevo cliente</string>
+    <string name="agenda_crear_confirmacion">Nuevo cliente</string>
+    <string name="agenda_editar_titulo">Editar Cliente</string>
+    <string name="agenda_editar_confirmacion">Cliente modificado</string>
+
+    <string name="agenda_eliminar_titulo">Eliminar cliente</string>
+    <string name="agenda_eliminar_muchos_titulo">Eliminación masiva de clientes</string>
+    <string name="agenda_eliminar_todos_titulo">Eliminar todos los clientes</string>
+    <string name="agenda_eliminar_mensaje">¿Seguro que desea eliminar este cliente?</string>
+    <string name="agenda_eliminar_muchos_mensaje">A continuación se va a proceder a eliminar el cliente o los clientes seleccionados</string>
+    <string name="agenda_eliminar_todos_mensaje">¿Seguro que desea eliminar todos los clientes de la agenda?</string>
+
+    <string name="agenda_eliminar_confirmacion">Cliente eliminado</string>
+    <string name="agenda_eliminar_todos_confirmacion">Se han eliminado todos los clientes de su agenda..!</string>
+    <string name="agenda_eliminar_muchos_confirmacion">Proceso de eliminación finalizado..!</string>
+
+    <string name="agenda_texto_vacio">Para dar de alta un nuevo cliente es obligatorio rellenar el nombre y el teléfono.</string>
+    <string name="agenda_modificacion_vacia">El nombre del cliente está vacío. Revise el formulario.</string>
+    <string name="Observaciones">Observaciones</string>
+    <string name="title_activity_importar_contactos">Importar Contactos de Android</string>
+    <string name="confirm_import">Se ha finalizado la importación de los contactos guardados en Android</string>
+
+    <string name="aceptar_import">A continuación se va a proceder a importar todos los contactos que hubiera en su agenda de Android</string>
+
+    <string name="titulo_activity_lista">CLIENTES INCLUIDOS EN TU AGENDA</string>
+
+    <string name="observaciones_importados">Contacto importado desde la agenda de Android el día: </string>
+
+    <string name="title_activity_settings">Ayuda</string>
+
+    <string name="nueva_linea">Bienvenido\na tu agenda\nde clientes..!</string>
+
+    <string name="check_toast">Position %1$d : %2$s</string>
+
+    <string name="title_activity_borrar_usuarios">Borrar clientes</string>
+    <string name="buscar_en_searchview">Buscar...</string>
+
+
+
+
+
+</resources>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="192dp"
+    android:gravity="bottom"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:background="@drawable/header" />
+
+
+
+    <!-- Imagen de perfil -->
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circle_image"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="@dimen/navigation_drawer_header_margin"
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/furgopropia"
+        app:border_color="@android:color/white"
+        app:border_width="2dp" />
+
+
+    <ImageView
+        android:layout_marginTop="120dp"
+        android:layout_width="125dp"
+        android:layout_height="33dp"
+        android:layout_marginLeft="15dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/gimenez_navi" />
+
+    <ImageView
+        android:layout_marginTop="120dp"
+        android:layout_width="117dp"
+        android:layout_height="33dp"
+        android:layout_marginLeft="140dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/titulo_inicio" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_gravity="left|bottom"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="1dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:text="Desarrollador Android:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:text="antoniom.sanchezf@gmail.com"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    </LinearLayout>
+
+</FrameLayout>

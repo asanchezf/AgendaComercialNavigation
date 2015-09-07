@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.videumcorp.desarrolladorandroid.navigatio" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName="com.videumcorp.desarrolladorandroid.navigatio.MainActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainActivity" />
+        </activity>
+
+        <activity
+            android:name="activitys.ActivityLista"
+            android:label="@string/app_name"
+            android:parentActivityName="com.videumcorp.desarrolladorandroid.navigatio.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.videumcorp.desarrolladorandroid.navigatio.MainActivity" />
+            <!-- - Autogenera botón para regresar a la activity padre -->
+
+        </activity>
+
+
+        <activity
+            android:name="activitys.AltaUsuarios"
+            android:label="@string/title_activity_alta_usuarios"
+            android:parentActivityName="activitys.ActivityLista" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="activitys.ActivityLista" />
+            <!-- - Autogenera botón para regresar a la activity padre -->
+
+        </activity>
+
+        <activity
+            android:name="activitys.ModificarUsuarios"
+            android:label="@string/title_activity_modificar_usuarios"
+            android:parentActivityName="activitys.ActivityLista"
+            android:windowSoftInputMode="stateHidden" >
+
+            <!-- - Para que no aparezca el teclado -->
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="activitys.ActivityLista" />
+            <!-- - Autogenera botón para regresar a la activity padre -->
+
+        </activity>
+        <activity
+            android:name="activitys.ImportarContactos"
+            android:label="@string/title_activity_importar_contactos"
+            android:parentActivityName="activitys.ActivityLista" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="activitys.ActivityLista" />
+            <!-- - Autogenera botón para regresar a la activity padre -->
+
+        </activity>
+
+
+
+        <activity
+            android:name="activitys.BorrarUsuarios"
+            android:label="@string/title_activity_borrar_usuarios"
+            android:parentActivityName="activitys.ActivityLista" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+            <!-- - Autogenera botón para regresar a la activity padre -->
+
+        </activity>
+
+    </application>
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+</manifest>
