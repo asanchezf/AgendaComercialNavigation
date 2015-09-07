@@ -7,32 +7,37 @@
 
     <ImageView
         android:id="@+id/category"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
         android:src="@drawable/image1" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/text1"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/category"
         android:textAppearance="@android:style/TextAppearance.Holo.Large"
         android:textStyle="bold"
-        android:textSize="15dp"/>
+        android:textSize="15dp"
+        android:maxWidth="200dp"
+        android:layout_alignTop="@+id/category"
+        android:layout_toRightOf="@+id/category"
+        android:layout_toEndOf="@+id/category"
+        android:minLines="1" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/text2"
+        android:maxWidth="150dp"
+        android:maxLines="1"
         android:layout_below="@+id/text1"
-        android:layout_toRightOf="@+id/category"
-        android:layout_alignParentBottom="true" />
+        android:layout_toRightOf="@+id/imageView2"
+        android:layout_toEndOf="@+id/imageView2" />
 
     <TextView
         android:id="@+id/text3"
@@ -55,6 +60,16 @@
         android:layout_marginLeft="2dp"
         android:text="TextView"
         android:textStyle="italic" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:src="@drawable/mail"
+        android:layout_alignTop="@+id/text2"
+        android:layout_toRightOf="@+id/category"
+        android:layout_toEndOf="@+id/category" />
+
 
     <ImageView
         android:id="@+id/imageView1"
