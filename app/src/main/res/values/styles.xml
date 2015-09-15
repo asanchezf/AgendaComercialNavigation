@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="AppTheme" parent="Base.AppTheme">
 
@@ -14,30 +14,40 @@
     <item name="windowNoTitle">true</item>-->
 
 
-
     <style name="Base.AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-            <item name="colorPrimary">@color/md_indigo_500</item>
-            <item name="colorPrimaryDark">@color/md_indigo_700</item>
-            <item name="colorAccent">@color/md_pink_500</item>
-            <item name="colorControlHighlight">@color/md_indigo_500_25</item>
-            <item name="android:windowBackground">@color/md_white_1000</item>
-        </style>
 
-        <style name="ToolbarTheme" parent="AppTheme">
-            <item name="android:textColorPrimary">@android:color/white</item>
-            <item name="android:textColorSecondary">@android:color/white</item>
-        </style>
+        <item name="colorPrimary">@color/md_indigo_500</item><!--Es el color principal de la aplicación, y se utilizará entre otras cosas como color de fondo de la action bar-->
+        <item name="colorPrimaryDark">@color/md_indigo_700</item><!--Es una variante más oscura del color principal, que por ejemplo en Android 5.0 se utilizará como color de la barra de estado (la barra superior que contiene los iconos de notificación, batería, reloj, …). Nota: en Android 4.x e inferiores la barra de estado permanecerá negra-->
+        <item name="colorAccent">@color/md_red_400</item><!--Suele ser el color utilizado para destacar el botón de acción proncipal de la aplicación (por ejemplo un botón flotante como el que vimos en el artículo sobre botones, y para otros pequeños detalles de la interfaz, como por ejemplo algunos controles, cuadros de texto o checkboxes-->
+        <item name="colorControlHighlight">@color/md_indigo_500_25</item>
+        <item name="android:windowBackground">@color/md_white_1000</item>
+    </style>
 
-        <style name="NavigationViewTheme" parent="AppTheme">
-            <item name="textAppearanceListItem">@style/TextAppearance.AppCompat.Body2</item>
-        </style>
+    <style name="ToolbarTheme" parent="AppTheme">
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+    </style>
 
-        <style name="AppAgendaTema" parent="android:Theme.Holo.Light">
-            <!--
-                Theme customizations available in newer API levels can go in
-                res/values-vXX/styles.xml, while customizations related to
-                backward-compatibility can go here. Añadudi desde la Agenda
-            -->
+    <style name="NavigationViewTheme" parent="AppTheme">
+        <item name="textAppearanceListItem">@style/TextAppearance.AppCompat.Body2</item>
+    </style>
+
+
+    <style name="ButtonTheme" parent="AppTheme">
+        <!--<item name="android:background">@color/md_indigo_700</item>-->
+        <item name="android:textColor">@android:color/white</item>
+
+
+    </style>
+
+
+    <style name="AppAgendaTema" parent="android:Theme.Holo.Light">
+        <item name="colorAccent">@color/md_blue_200</item>
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here. Añadudi desde la Agenda
+        -->
     </style>
 
 

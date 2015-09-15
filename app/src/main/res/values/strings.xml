@@ -13,7 +13,8 @@
     <string name="Apell">Apellidos</string>
     <string name="Adress">Dirección</string>
     <string name="Telephone">Teléfono</string>
-    <string name="Email">email</string>
+    <string name="email">Email</string>
+    <string name="zona">Zona</string>
     <string name="Cancel">Cancelar</string>
     <string name="Save">Guardar</string>
     <string name="menu_editar">Editar cliente</string>
@@ -21,12 +22,16 @@
     <string name="menu_eliminar">Eliminar</string>
     <string name="menu_llamar">Llamar al cliente</string>
     <string name="menu_crear">NUEVO CONTACTO</string>
+    <string name="menu_crear_cliente">NUEVO CLIENTE</string>
     <string name="menu_borrar_muchos">ELIMINAR</string>
     <string name="menu_email">Enviar correo</string>
     <string name="menu_compartir">Compartir</string>
     <string name="menu_buscar">Buscar contacto</string>
-    <string name="menu_traer_contactos">Importar tu agenda Android</string>
-    <string name="menu_borrar_todos">Borrar todos los clientes</string>
+    <string name="menu_traer_contactos">Importar tu agenda de Android</string>
+    <string name="menu_borrar_todos">Borrar la agenda completa</string>
+    <string name="menu_ver_agenda">Mostrar la agenda</string>
+    <string name="menu_borrar_algunos">Borrar contactos</string>
+
     <string name="usuarios_editar_titulo">Editar Clientes</string>
     <string name="usuarios_crear_titulo">Nuevo cliente</string>
     <string name="title_activity_modificar_usuarios">Modificar clientes</string>
@@ -66,9 +71,11 @@
     <string name="check_toast">Position %1$d : %2$s</string>
 
     <string name="title_activity_borrar_usuarios">Borrar clientes</string>
-    <string name="buscar_en_searchview">Buscar...</string>
+    <string name="buscar_en_searchview">Buscar nombre</string>
 
-
+    <string name="about">Si necesitas ayuda envía un correo a antoniom.sanchezf@gmail.com.
+    Agenda Comercial es una aplicación realizada en el año 2015.
+    En otro...</string>
 
 
 

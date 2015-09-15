@@ -37,6 +37,9 @@ public class Contacts_Adapter_Images_Search extends ArrayAdapter<Contactos> impl
     private String filter = "";//Caracteres introducidos para el filtrado
     private String itemValue = "";//Nombre completo que aparece en el textview del nombre
 
+    private final String noTieneImail="Email no disponible";//Se trae por defecto al importar contactos o al dar de alta
+
+
     public Contacts_Adapter_Images_Search(ActivityLista activity, ArrayList<Contactos> friendList) {
 
         super(activity, 0, friendList);
@@ -98,6 +101,8 @@ public class Contacts_Adapter_Images_Search extends ArrayAdapter<Contactos> impl
             holder.categoria = (ImageView) view.findViewById(R.id.category);
             holder.telefono = (TextView) view.findViewById(R.id.text4);
 
+            holder.iconoEmail=(ImageView)view.findViewById(R.id.imageView2);
+
             view.setTag(holder);
 
         } else {
@@ -115,6 +120,7 @@ public class Contacts_Adapter_Images_Search extends ArrayAdapter<Contactos> impl
 
         else{//Ha habido filtrado: pinta los caracteres del textview que correspondan en otro color y el resto permanece igual
 
+           //AQUI
            itemValue = contactos.getNombre();
 
            int startPos = itemValue.toLowerCase(Locale.US).indexOf(filter.toLowerCase(Locale.US));
@@ -133,8 +139,20 @@ public class Contacts_Adapter_Images_Search extends ArrayAdapter<Contactos> impl
 
        }
 
-        //Pinta el resto de los controles sin cambios....
-        holder.subtitulo.setText(contactos.getEmail());
+        //Pinta el resto de los controles....
+
+        //Si tiene email pinta un icono y si no lo tiene pinta otro
+        if (!contactos.getEmail().equals(noTieneImail)) {
+            holder.subtitulo.setText(contactos.getEmail());
+            holder.iconoEmail.setImageResource(R.drawable.mail);
+        }
+
+        else if(contactos.getEmail().equals(noTieneImail)){
+            holder.subtitulo.setText(noTieneImail);
+            //holder.subtitulo.setText(contactos.getEmail());
+            holder.iconoEmail.setImageResource(R.drawable.nomail);
+        }
+
         holder.telefono.setText(contactos.getTelefono());
 
         /*DESCRIPCIÓN DE LAS ZONAS:
@@ -195,6 +213,8 @@ public class Contacts_Adapter_Images_Search extends ArrayAdapter<Contactos> impl
         ImageView categoria;
         TextView telefono;
 
+        ImageView iconoEmail;
+
     }
 
 
@@ -214,7 +234,7 @@ public class Contacts_Adapter_Images_Search extends ArrayAdapter<Contactos> impl
                 ArrayList<Contactos> tempList = new ArrayList<Contactos>();
 
                 // search content in friend list
-                for (Contactos user : friendList) {
+                for (Contactos user : friendList) {//AQUI
                     if (user.getNombre().toLowerCase().contains(constraint.toString().toLowerCase())) {
                         tempList.add(user);
 

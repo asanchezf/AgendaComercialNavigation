@@ -30,18 +30,26 @@
         yourapp:actionViewClass="android.support.v7.widget.SearchView"/>
 
 
-    <item
-        android:id="@+id/menu_traer_contactos"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/menu_traer_contactos"
-        android:icon="@drawable/importado"/>
 
+
+    <item
+        android:id="@+id/menu_borrar_algunos"
+        android:orderInCategory="100"
+        yourapp:showAsAction="ifRoom"
+        android:title="@string/menu_borrar_algunos"
+        android:icon="@drawable/eliminar"/>
 
     <item
         android:id="@+id/menu_borrar_todos"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        yourapp:showAsAction="never"
         android:title="@string/menu_borrar_todos"
-        android:icon="@drawable/amigos"/>
+        android:icon="@drawable/importado"/>
+
+    <item
+        android:id="@+id/menu_traer_contactos"
+        android:orderInCategory="100"
+        yourapp:showAsAction="never"
+        android:title="@string/menu_traer_contactos"
+        android:icon="@drawable/importado"/>
 </menu>

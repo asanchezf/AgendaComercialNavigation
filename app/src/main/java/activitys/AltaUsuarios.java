@@ -98,7 +98,9 @@ public class AltaUsuarios extends AppCompatActivity {
 //		//Le indicamos al spinner el adaptador a usar
 //		categoria.setAdapter(adapter);
 //		
-		
+
+
+
 		
 	guardar.setOnClickListener(new View.OnClickListener() {
 			
@@ -200,7 +202,89 @@ public class AltaUsuarios extends AppCompatActivity {
 		
 	}
 
-	
+
+
+	public void guardar(){
+
+		String nom=nombre.getText().toString();
+		String apell=apellidos.getText().toString();
+		String direccion=direc.getText().toString();
+		String tele=telefono.getText().toString();
+		String correo=email.getText().toString();
+		long Id_Categ=0;
+
+		if (radio1.isChecked()==true) {
+			Id_Categ=1;
+
+		}
+		else if(radio2.isChecked()==true)   {
+			Id_Categ=2;
+		}
+		else if(radio3.isChecked()==true)   {
+			Id_Categ=3;
+		}
+		else if(radio4.isChecked()==true)   {
+			Id_Categ=4;
+		}
+
+		else if(radio5.isChecked()==true)   {
+			Id_Categ=5;
+		}
+
+		else if(radio6.isChecked()==true)   {
+			Id_Categ=6;
+		}
+
+		String observa=observaciones.getText().toString();
+
+		//Creamos conexi�n a BB.dd
+//				cn = new BBDD(getApplicationContext());//Ahora el contexto por defecto no es una activity sino q es un evento onClick. Por eso hay qu pasar getApplicationContext()
+//				SQLiteDatabase db = cn.getWritableDatabase();//Modo escritura
+//				cn.InsertarUsuario(db, nom, apell, direccion, tele, correo);
+
+
+//				Connection=new SQLControlador(getApplicationContext());
+//				Connection.abrirBaseDeDatos(2);//Modo Escritura
+
+
+
+
+		if (validar (validar) ){
+
+
+			try {
+
+				Connection = new SQLControlador(getApplicationContext());//Objeto SQLControlador
+				Connection.abrirBaseDeDatos(2);
+				Connection.InsertarUsuario(nom, apell, direccion, tele, correo, Id_Categ, observa);
+
+
+				Toast.makeText(getApplicationContext(), "Se ha incluido en la agenda a " + nom, Toast.LENGTH_SHORT).show();
+				Connection.cerrar();
+
+//				Intent i = new Intent(AltaUsuarios.this, MainActivity.class);
+//				startActivity(i);
+				setResult(RESULT_OK);
+				finish();
+				//Para actualizar datos en MainActivity Se va a llamar a Consultar() desde Onrestart() del com.agendacomercial.navigatio.
+
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+			//Devolvemos el control y cerramos la Activity
+
+
+
+
+		}//Fin validar
+
+
+
+
+	}
+
 	//Validaci�n para que el nombre no se deje vac�o
 	private boolean  validar(boolean validar){
 		if (  (nombre.getText().toString().equals("")) ||  (telefono.getText().toString().equals("")) ){
@@ -247,6 +331,14 @@ public class AltaUsuarios extends AppCompatActivity {
 		if (id == R.id.action_settings) {
 			return true;
 		}
+
+		if (id == R.id.nuevo_usuario) {
+
+			guardar();
+
+			return true;
+		}
+
 		return super.onOptionsItemSelected(item);
 	}
 }

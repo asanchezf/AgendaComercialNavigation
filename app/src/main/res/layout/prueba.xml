@@ -1,10 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/AppAgendaTema"
-    tools:context=".AltaUsuarios">
+    tools:context=".ModificarUsuarios">
+
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -28,91 +30,108 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:theme="@style/ToolbarTheme" />
 
-        //MODIFICACIONES PARA MATERIAL DESING---------------//
+
+        <TextView
+            android:id="@+id/label_nombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:paddingLeft="5dp"
+
+            android:paddingTop="5dp"
+            android:text="@string/Name"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
             android:id="@+id/nombre"
-            android:layout_width="@dimen/abc_search_view_preferred_width"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_below="@+id/label_nombre"
+            android:ems="10"
+            android:paddingLeft="5dp" />
 
-            android:layout_below="@+id/toolbar"
-
-
-            android:hint="@string/Name"
-            android:inputType="textCapSentences"
-            android:layout_marginLeft="10dp"
-            android:textColorHint="#CFCFCF"
-            android:drawableLeft="@drawable/ic_action_action_account_box"
-            android:layout_marginTop="@dimen/abc_edit_text_inset_top_material"/>
-
+        <TextView
+            android:id="@+id/label_condiciones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nombre"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="5dp"
+            android:text="@string/Apell"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
             android:id="@+id/apellidos"
-            android:layout_width="@dimen/abc_panel_menu_list_width"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/nombre"
+            android:layout_below="@+id/label_condiciones"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            android:paddingLeft="5dp"></EditText>
 
-            android:inputType="textCapSentences"
-            android:hint="@string/Apell"
-
-            android:layout_marginTop="0dp"
-            android:layout_marginLeft="35dp"
-            android:textColorHint="#CFCFCF" />
-
+        <TextView
+            android:id="@+id/label_contacto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/apellidos"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="5dp"
+            android:text="@string/Adress"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
             android:id="@+id/direc"
-            android:layout_width="@dimen/abc_search_view_preferred_width"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/apellidos"
-
-            android:layout_marginLeft="10dp"
-            android:hint="@string/Adress"
-            android:inputType="textCapSentences"
-            android:paddingLeft="5dp"
-            android:textColorHint="#CFCFCF"
-            android:drawableLeft="@drawable/ic_action_communication_location_on"
-            android:layout_marginTop="15dp"/>
-
-
-        <EditText
-            android:id="@+id/telefono"
-            android:layout_width="@dimen/abc_search_view_text_min_width"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/direc"
-
-            android:layout_marginLeft="10dp"
-            android:hint="@string/Telephone"
-            android:inputType="phone"
-            android:paddingLeft="5dp"
-            android:textColorHint="#CFCFCF"
-            android:drawableLeft="@drawable/ic_action_communication_phone"
-            android:layout_marginTop="15dp">
+            android:layout_below="@+id/label_contacto"
+            android:ems="10"
+            android:paddingLeft="5dp">
 
         </EditText>
 
+        <TextView
+            android:id="@+id/label_telefono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/direc"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="5dp"
+            android:text="@string/Telephone"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/telefono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/label_telefono"
+            android:ems="10"
+            android:inputType="phone"
+            android:paddingLeft="5dp"></EditText>
+
+        <TextView
+            android:id="@+id/label_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/telefono"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="5dp"
+            android:text="@string/email"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
             android:id="@+id/email"
-            android:layout_width="@dimen/abc_panel_menu_list_width"
-
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/telefono"
-
-            android:layout_marginLeft="10dp"
-            android:hint="@string/email"
+            android:layout_below="@+id/label_email"
+            android:ems="10"
             android:inputType="textEmailAddress"
-            android:paddingLeft="5dp"
-            android:textColorHint="#CFCFCF"
-            android:drawableLeft="@drawable/ic_action_communication_email"
-            android:layout_marginTop="15dp"/>
+            android:paddingLeft="5dp" />
 
-        <!--android:ems="10"-->
         <TextView
             android:id="@+id/t_tipo"
             android:layout_width="wrap_content"
@@ -120,20 +139,17 @@
             android:layout_below="@id/email"
             android:layout_marginTop="20dp"
             android:paddingLeft="5dp"
-            android:textSize="20dp"
-            android:hint="@string/zona"
-            android:layout_marginLeft="10dp"
-            android:drawableLeft="@drawable/ic_action_maps_local_shipping"
+            android:text="Zona:"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            />
         <!--- Para que no aparezca
-               <Spinner
-                   android:id="@+id/tipo"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_alignTop="@id/t_tipo"
-                   android:layout_toRightOf="@id/t_tipo" />
-               -->
+        <Spinner
+            android:id="@+id/tipo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/t_tipo"
+            android:layout_toRightOf="@id/t_tipo" />
+        -->
 
         <RadioGroup
             android:id="@+id/radioGroup1"
@@ -141,17 +157,14 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/t_tipo"
             android:layout_below="@+id/t_tipo"
-            android:paddingLeft="5dp"
-            android:layout_marginLeft="10dp"
-            >
+            android:paddingLeft="5dp">
 
             <RadioButton
                 android:id="@+id/radio1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="Alcorcón y alrededores"
-                />
+                android:text="Alcorcón y alrededores" />
 
             <RadioButton
                 android:id="@+id/radio2"
@@ -182,25 +195,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sin calificar" />
-
         </RadioGroup>
 
+        <TextView
+            android:id="@+id/label_observaciones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/radioGroup1"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="5dp"
+            android:text="@string/Observaciones"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
             android:id="@+id/observaciones"
-            android:layout_width="@dimen/abc_search_view_preferred_width"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/radioGroup1"
-            android:layout_marginLeft="10dp"
-
-            android:hint="@string/Observaciones"
-
-            android:inputType="textCapSentences|textMultiLine"
-            android:paddingLeft="5dp"
-            android:textColorHint="#CFCFCF"
-            android:drawableLeft="@drawable/ic_action_av_playlist_add"
-            android:layout_marginTop="20dp"/>
+            android:layout_below="@+id/label_observaciones"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            android:paddingLeft="5dp" />
 
         <LinearLayout
             android:id="@+id/botonera"
@@ -215,12 +230,10 @@
                 android:id="@+id/boton_cancelar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/redondeoesquinas"
                 android:text="@string/Cancel"
                 android:textColor="@android:color/white"
-
-
-                android:padding="4dp" />
+                android:background="@drawable/redondeoesquinas"
+                />
             <!--Para separar a los dos botones-->
             <View
                 android:layout_width="5dp"
@@ -233,27 +246,12 @@
                 android:id="@+id/boton_guardar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/redondeoesquinas"
                 android:text="@string/Save"
                 android:textColor="@android:color/white"
-
-
-                android:padding="5dp"/>
+                android:background="@drawable/redondeoesquinas"/>
 
         </LinearLayout>
 
-        //FIN MODIFICACIONES PARA MATERIAL DESING---------------//
-
-        <!--Se pone para evitar que colapse con la Navigation Bar-->
-        <!--<LinearLayout
-
-            android:id="@+id/linea"
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:background="@android:color/white"
-            android:orientation="horizontal"
-            android:layout_below="@+id/botonera">
-        </LinearLayout>-->
         <!--Se pone para evitar que colapse con la Navigation Bar-->
         <View
             android:layout_width="match_parent"
@@ -264,5 +262,6 @@
         </View>
 
     </RelativeLayout>
+
 
 </ScrollView>

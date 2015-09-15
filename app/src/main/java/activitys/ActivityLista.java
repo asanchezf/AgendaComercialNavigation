@@ -635,6 +635,14 @@ public class ActivityLista extends AppCompatActivity implements OnQueryTextListe
             return true;
         }
 
+        if (id == R.id.menu_borrar_algunos) {
+
+            Intent intent=new Intent(ActivityLista.this,BorrarUsuarios.class);
+            startActivity(intent);
+
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 

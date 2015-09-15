@@ -1,5 +1,6 @@
 package com.videumcorp.desarrolladorandroid.navigatio;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,10 +8,15 @@ import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import activitys.ActivityLista;
 
 public class SettingsActivity extends AppCompatActivity {
 
     Toolbar toolbar;
+    TextView txt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +33,9 @@ public class SettingsActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(colorPrimaryDark);
         }
+
+
+        txt=(TextView)findViewById(R.id.textoabout);
     }
 
     @Override
@@ -43,7 +52,18 @@ public class SettingsActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        if (id == R.id.ver_agenda) {
+
+            Intent intent=new Intent(SettingsActivity.this, ActivityLista.class);
+
+            startActivity(intent);
+
+            return true;
+        }
+
+
+
+
         if (id == R.id.action_settings) {
             return true;
         }

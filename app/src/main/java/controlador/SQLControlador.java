@@ -86,6 +86,7 @@ public class SQLControlador {
 			String Direccion, String Telefono, String Email, long Id_Categ,
 			String observa) {
 
+
 		if(Email.toString().equals("")){
 			Email="Email no disponible";
 		}

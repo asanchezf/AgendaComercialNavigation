@@ -15,6 +15,8 @@ import android.view.MenuItem;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import activitys.ActivityLista;
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     ActionBar actionBar;
     TextView textView;
     Button boton;
+
+
 
     //NUEVO AÑADIDO..../////////////////////////////////////////////////////
 
@@ -83,13 +87,22 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
                 return true;
+
+            case R.id.menu_ver_agenda:
+                Intent intent=new Intent(MainActivity.this,ActivityLista.class);
+                startActivity(intent);
+
+                return true;
         }
+
+
         return super.onOptionsItemSelected(item);
     }
 

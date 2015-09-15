@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -132,7 +133,11 @@ public class BorrarUsuarios extends AppCompatActivity{
                                 R.string.agenda_eliminar_muchos_confirmacion,
                                 Toast.LENGTH_SHORT).show();
                         //dbConnection.cerrar();
-                        consultarParaBorrar();
+                        //consultarParaBorrar();
+
+                        Intent intent=new Intent(BorrarUsuarios.this,ActivityLista.class);
+
+                        startActivity(intent);
                     }
                 });
 

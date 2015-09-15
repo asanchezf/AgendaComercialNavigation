@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/iconoapp"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -41,7 +41,8 @@
         <activity
             android:name="activitys.AltaUsuarios"
             android:label="@string/title_activity_alta_usuarios"
-            android:parentActivityName="activitys.ActivityLista" >
+            android:parentActivityName="activitys.ActivityLista"
+            android:windowSoftInputMode="stateHidden" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="activitys.ActivityLista" />
@@ -66,7 +67,8 @@
         <activity
             android:name="activitys.ImportarContactos"
             android:label="@string/title_activity_importar_contactos"
-            android:parentActivityName="activitys.ActivityLista" >
+            android:parentActivityName="activitys.ActivityLista"
+            >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="activitys.ActivityLista" />
@@ -82,7 +84,7 @@
             android:parentActivityName="activitys.ActivityLista" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="activitys.ActivityLista" />
             <!-- - Autogenera botón para regresar a la activity padre -->
 
         </activity>
