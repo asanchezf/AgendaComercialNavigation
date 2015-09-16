@@ -5,6 +5,8 @@ import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,7 +37,10 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
 
-        txt=(TextView)findViewById(R.id.textoabout);
+        txt=(TextView)findViewById(R.id.url);
+        txt.setMovementMethod(LinkMovementMethod.getInstance());
+
+
     }
 
     @Override

@@ -62,9 +62,13 @@
 
     <string name="titulo_activity_lista">CLIENTES INCLUIDOS EN TU AGENDA</string>
 
+    <string name="no_hay_registros">NO HAY CLIENTES EN TU AGENDA</string>
+
+    <string name="concatenar_numero_registros">HAY</string>
+
     <string name="observaciones_importados">Contacto importado desde la agenda de Android el día: </string>
 
-    <string name="title_activity_settings">Ayuda</string>
+    <string name="title_activity_settings">Acerca de</string>
 
     <string name="nueva_linea">Bienvenido\na tu agenda\nde clientes..!</string>
 
@@ -73,10 +77,10 @@
     <string name="title_activity_borrar_usuarios">Borrar clientes</string>
     <string name="buscar_en_searchview">Buscar nombre</string>
 
-    <string name="about">Si necesitas ayuda envía un correo a antoniom.sanchezf@gmail.com.
-    Agenda Comercial es una aplicación realizada en el año 2015.
-    En otro...</string>
-
+    <string name="about">Si necesitas ayuda envía un correo a antoniom.sanchezf@gmail.com.\nAgenda Comercial de clientes es una aplicación realizada en el año @ 2015 por Antonio Sánchez.\nEstán reservados todos los derechos de modificación y/o publicación.
+    </string>
+    <string name="twiter">Sigueme en twiter:</string>
+    <string name="enlace"><a href="http://twitter.com/antoniom_sf">http://twitter.com/antoniom_sf</a></string>
 
 
 </resources>

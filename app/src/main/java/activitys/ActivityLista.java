@@ -29,6 +29,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.SQLException;
@@ -50,7 +51,7 @@ public class ActivityLista extends AppCompatActivity implements OnQueryTextListe
     private ArrayList<Contactos> contactos;//COLECCION DE TIPO CONTACTOS (BEAN CON LA MISMA ESTRUTURA DE CAMPOS QUE LA BBDD)
 
     //ADAPTADORES....===========================================================
-    ArrayAdapter<Contactos> adaptador;//Primer adaptador utilizado. EJEMPLO 1
+   // ArrayAdapter<Contactos> adaptador;//Primer adaptador utilizado. EJEMPLO 1
     //private ContactosAdapter contactosAdapter;// Segundo adaptador utilizado.Ejemplo sin im�genes..
     //private ContactosAdapter_old contactosAdapter_Jarroba;// Ejemplo con im�genes.
 
@@ -59,6 +60,10 @@ public class ActivityLista extends AppCompatActivity implements OnQueryTextListe
     //private ContactosAdapter_Imagenes contactosAdapter_imagenes;
 
     private Contacts_Adapter_Images_Search contactosAdapter_imagenes;
+    private int totalRegistros;
+    private String totales;
+    private TextView txtTotales;
+
     ///////////////------------------////////////////
 
 
@@ -94,6 +99,9 @@ public class ActivityLista extends AppCompatActivity implements OnQueryTextListe
 
         lista = (ListView) findViewById(android.R.id.list);// -----MODIFICACION-2
          //lista = (ListView) findViewById(R.id.list);
+
+
+        txtTotales=(TextView)findViewById(R.id.text3);
 
         //Añadimos la toolbar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -434,11 +442,12 @@ public class ActivityLista extends AppCompatActivity implements OnQueryTextListe
 
 
 
+
     }
 
     private void consultar()  {
 
-
+         String concatena_numero_registros;
         dbConnection = new SQLControlador(getApplicationContext());
         try {
             dbConnection.abrirBaseDeDatos(1);//Modo lectura
@@ -454,7 +463,24 @@ public class ActivityLista extends AppCompatActivity implements OnQueryTextListe
 
         //lista.setAdapter( new ContactosAdapter_Imagenes(this,contactos));
 
+         concatena_numero_registros=getResources().getString(R.string.concatenar_numero_registros);//DEvuelve HAY para concatenar y  mostrar el número total de registros...
+        totalRegistros=  contactosAdapter_imagenes.getCount();
+
+        //double euros
+        // euros=Double.parseDouble(txtEuros.getText());
+         totales= String.valueOf(totalRegistros);
+
+
+
+        if(totalRegistros>0) {
+            txtTotales.setText(concatena_numero_registros+ " " + totales + " " + getResources().getString(R.string.titulo_activity_lista));
+        }
+
+        else{
+            txtTotales.setText(getResources().getString(R.string.no_hay_registros));
+        }
         lista.setAdapter(contactosAdapter_imagenes);
+
         dbConnection.cerrar();
     }
 

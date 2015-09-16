@@ -21,10 +21,10 @@
 
     <ImageView
         android:id="@+id/logosettings"
-        android:layout_width="380dp"
-        android:layout_height="190dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="top"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="75dp"
 
         android:src="@drawable/camionazul" />
 
@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="111dp"
 
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="340dp"
         >
 
         <ImageView
@@ -46,35 +46,34 @@
 
         <TextView
             android:id="@+id/txt1"
-            android:layout_marginTop="5dp"
             android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_toRightOf="@+id/logoapp"
-            android:layout_marginLeft="25dp"
+            android:layout_height="wrap_content"
             android:text="Agenda Comercial"
             android:textStyle="bold"
             android:textColor="@color/yellowFlatShadow"
-            android:textSize="25dp"
+            android:textSize="22dp"
             android:background="@color/md_indigo_500"
 
-             />
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/logoapp"
+            android:layout_toEndOf="@+id/logoapp" />
 
         <TextView
 
             android:id="@+id/txt2"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
             android:text="Versión 1.0"
             android:textStyle="bold"
             android:textColor="@color/yellowFlatShadow"
-            android:textSize="25dp"
+            android:textSize="19dp"
             android:background="@color/md_indigo_500"
 
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginStart="35dp"
+            android:layout_below="@+id/txt1"
             android:layout_toRightOf="@+id/logoapp"
-            android:layout_marginTop="40dp"
-             />
+            android:layout_toEndOf="@+id/logoapp" />
 
 
 
@@ -86,9 +85,9 @@
     <TextView
 
         android:layout_width="match_parent"
-        android:layout_height="166dp"
-        android:layout_marginTop="410dp"
-
+        android:layout_height="139dp"
+        android:layout_marginTop="425dp"
+        android:layout_marginLeft="8dp"
         android:text="@string/about"
         android:textStyle="bold|italic"
         android:textColor="@android:color/white"
@@ -97,4 +96,27 @@
         android:id="@+id/textoabout"
        />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/twiter"
+        android:id="@+id/textView"
+        android:layout_marginLeft="10dp"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="575dp"
+        android:textSize="11sp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/enlace"
+        android:id="@+id/url"
+        android:layout_marginLeft="105dp"
+        android:textColorLink="@color/yellowFlatShadow"
+        android:layout_marginTop="575dp"
+        android:linksClickable="true"
+        android:textSize="11sp"/>
 </FrameLayout>
