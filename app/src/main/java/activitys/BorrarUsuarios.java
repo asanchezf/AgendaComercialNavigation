@@ -5,9 +5,6 @@ package activitys;
  */
 
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,15 +13,19 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.videumcorp.desarrolladorandroid.navigatio.R;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import Beans.ContactosBorrar;
 import controlador.SQLControlador;
@@ -202,4 +203,25 @@ public class BorrarUsuarios extends AppCompatActivity{
                     }
 
 
-                }
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+//Evitamos que funcione la tecla del menú que traen por defecto los samsung...
+        switch(keyCode) {
+            case KeyEvent.KEYCODE_MENU:
+                // Toast.makeText(this, "Menú presionado",
+                //       Toast.LENGTH_LONG);
+                //toolbar.canShowOverflowMenu();
+                //toolbar.setFocusable(true);
+                //toolbar.collapseActionView();
+
+
+
+                return true;
+        }
+
+        return super.onKeyUp(keyCode, event);
+    }
+
+
+
+}

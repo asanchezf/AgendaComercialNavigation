@@ -13,11 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
-
-
 import android.support.v7.widget.SearchView;
-
-
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.ContextMenu;
@@ -26,22 +22,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.videumcorp.desarrolladorandroid.navigatio.R;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.videumcorp.desarrolladorandroid.navigatio.R;
-
 import Beans.Contactos;
-//import antonio.ejemplos.agendacomercial.R;
 import controlador.SQLControlador;
 
-import static android.widget.SearchView.*;
+import static android.widget.SearchView.OnQueryTextListener;
+
+//import antonio.ejemplos.agendacomercial.R;
 
 
 public class ActivityLista extends AppCompatActivity implements OnQueryTextListener, SearchView.OnQueryTextListener,MenuItemCompat.OnActionExpandListener {// -EXTENDS DE LISTACTIVITY---MODIFICACION-1..UPV
@@ -596,7 +591,7 @@ public class ActivityLista extends AppCompatActivity implements OnQueryTextListe
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-
+//Evitamos que funcione la tecla del menú que traen por defecto los samsung...
         switch(keyCode) {
             case KeyEvent.KEYCODE_MENU:
                // Toast.makeText(this, "Menú presionado",

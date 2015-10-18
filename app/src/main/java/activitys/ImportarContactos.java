@@ -13,6 +13,7 @@ import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -592,5 +593,24 @@ public class ImportarContactos extends AppCompatActivity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public boolean onKeyUp(int keyCode, KeyEvent event) {
+//Evitamos que funcione la tecla del menú que traen por defecto los samsung...
+		switch(keyCode) {
+			case KeyEvent.KEYCODE_MENU:
+				// Toast.makeText(this, "Menú presionado",
+				//       Toast.LENGTH_LONG);
+				//toolbar.canShowOverflowMenu();
+				//toolbar.setFocusable(true);
+				//toolbar.collapseActionView();
+
+
+
+				return true;
+		}
+
+		return super.onKeyUp(keyCode, event);
 	}
 }

@@ -12,11 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import activitys.ActivityLista;
@@ -30,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     ActionBar actionBar;
     TextView textView;
-    Button boton;
+    //Button boton;
 
 
 
@@ -55,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
 
-        boton=(Button)findViewById(R.id.boton_agenda);
+        //boton=(Button)findViewById(R.id.boton_agenda);
 
 
         if (navigationView != null) {
@@ -66,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Ver la Agenda..o cerrar la app
-        boton.setOnClickListener(new View.OnClickListener() {
+      /*  boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -76,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             }
-        });
+        });*/
 
     }
 
