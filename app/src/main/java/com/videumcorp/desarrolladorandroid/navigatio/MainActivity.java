@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -213,6 +214,26 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                 });
+    }
+
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+//Evitamos que funcione la tecla del menú que traen por defecto los samsung...
+        switch(keyCode) {
+            case KeyEvent.KEYCODE_MENU:
+                // Toast.makeText(this, "Menú presionado",
+                //       Toast.LENGTH_LONG);
+                //toolbar.canShowOverflowMenu();
+                //toolbar.setFocusable(true);
+                //toolbar.collapseActionView();
+
+
+
+                return true;
+        }
+
+        return super.onKeyUp(keyCode, event);
     }
 }
 

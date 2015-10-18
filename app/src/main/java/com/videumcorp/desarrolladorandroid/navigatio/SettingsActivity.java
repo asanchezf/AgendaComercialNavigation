@@ -2,15 +2,14 @@ package com.videumcorp.desarrolladorandroid.navigatio;
 
 import android.content.Intent;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.TypedValue;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import activitys.ActivityLista;
@@ -74,5 +73,24 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+//Evitamos que funcione la tecla del menú que traen por defecto los samsung...
+        switch(keyCode) {
+            case KeyEvent.KEYCODE_MENU:
+                // Toast.makeText(this, "Menú presionado",
+                //       Toast.LENGTH_LONG);
+                //toolbar.canShowOverflowMenu();
+                //toolbar.setFocusable(true);
+                //toolbar.collapseActionView();
+
+
+
+                return true;
+        }
+
+        return super.onKeyUp(keyCode, event);
     }
 }
