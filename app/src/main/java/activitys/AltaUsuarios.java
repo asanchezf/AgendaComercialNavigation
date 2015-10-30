@@ -3,6 +3,7 @@ package activitys;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.pm.ActivityInfo;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
@@ -54,7 +55,7 @@ public class AltaUsuarios extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_alta_usuarios);
-		
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		nombre=(EditText) findViewById(R.id.nombre);
 		apellidos=(EditText) findViewById(R.id.apellidos);
 		direc=(EditText) findViewById(R.id.direc);

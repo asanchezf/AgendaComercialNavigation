@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@color/list_normal" android:state_enabled="false" android:state_focused="true" />
+
+    <!--Al presionar -->
+    <item android:drawable="@color/list_pressed" android:state_pressed="true" />
+
+    <!--Al presionar long -->
+    <item android:drawable="@color/list_pressed_long" android:state_focused="true" android:state_pressed="true" />
+    <item android:drawable="@color/list_pressed_long" android:state_focused="false" android:state_pressed="true" />
+    <!--Al ser seleccionada -->
+    <item android:drawable="@color/list_active" android:state_focused="true" />
+
+  <!--  <selector xmlns:android="http://schemas.android.com/apk/res/android">
+        <item android:drawable="@android:color/transparent" android:state_window_focused="false" />
+        &lt;!&ndash; Even though these two point to the same resource, have two states so the drawable will invalidate itself when coming out of pressed state. &ndash;&gt;
+        <item android:drawable="@drawable/list_selector_background_disabled" android:state_enabled="false" android:state_focused="true" android:state_pressed="true" />
+        <item android:drawable="@drawable/list_selector_background_disabled" android:state_enabled="false" android:state_focused="true" />
+        <item android:drawable="@drawable/list_selector_background_transition" android:state_focused="true" android:state_pressed="true" />
+        <item android:drawable="@drawable/list_selector_background_transition" android:state_focused="false" android:state_pressed="true" />
+        <item android:drawable="@+drawable/list_selector_background_focus" android:state_focused="true" />
+    </selector>-->
+
+
+</selector>

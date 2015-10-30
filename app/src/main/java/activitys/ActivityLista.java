@@ -7,6 +7,7 @@ package activitys;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
@@ -91,7 +92,7 @@ public class ActivityLista extends AppCompatActivity implements OnQueryTextListe
         super.onCreate(savedInstanceState);
         // setContentView(R.layout.activity_main);//--MODIFICACION
         setContentView(R.layout.inicio);//Contiene un Listview y una caja d texto para la salida sin datos. UTILIZADO EN UPV
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         lista = (ListView) findViewById(android.R.id.list);// -----MODIFICACION-2
          //lista = (ListView) findViewById(R.id.list);

@@ -45,8 +45,9 @@
         android:layout_width="fill_parent"
         android:layout_height="414dp"
         android:layout_weight="2.20"
-        tools:listitem="@layout/image_list_item_3" />
-    
+        tools:listitem="@layout/image_list_item_3"
+        android:listSelector="@drawable/listview_background"/>
+    <!-- android:listSelector="@drawable/listview_background" para cambio color en selección filas listview-->
 
 
 </LinearLayout>
