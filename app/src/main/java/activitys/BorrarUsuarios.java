@@ -34,6 +34,7 @@ import controlador.SQLControlador;
 public class BorrarUsuarios extends AppCompatActivity{
 
     private ListView lista;// OBJETO LISTVIEW
+    private int index;//Para preservar el scroll del listview
     private SQLControlador dbConnection;//CONTIENE LAS CONEXIONES A BBDD (CREADA EN DBHELPER.CLASS) Y LOS M�TODOS INSERT, UPDATE, DELETE, BUSCAR....
     private ArrayList<ContactosBorrar> contactosBorrar;//COLECCION DE TIPO CONTACTOS (BEAN CON LA MISMA ESTRUTURA DE CAMPOS QUE LA BBDD)
 
@@ -220,6 +221,46 @@ public class BorrarUsuarios extends AppCompatActivity{
         }
 
         return super.onKeyUp(keyCode, event);
+    }
+
+    @Override
+    protected void onResume() {
+    		/*
+    		 Se llama cuando la actividad va a comenzar a interactuar con el usuario.
+    		 Es un buen lugar para lanzar las animaciones y la m�sica.
+    		 *
+    		 * */
+
+        super.onResume();
+
+        //mp.start();
+
+        //Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show();
+
+        //Para preserver el scroll del listview
+        if(lista != null) {
+            if (lista.getCount() > index) lista.setSelectionFromTop(index, 0);
+            else lista.setSelectionFromTop(0, 0);
+        }
+
+    }
+
+
+
+    @Override
+    protected void onPause() {
+    	/*
+    	 * Indica que la actividad est� a punto de ser lanzada a segundo plano, normalmente porque otra actividad es lanzada.
+    	 * Es el lugar adecuado para detener animaciones, m�sica o almacenar los datos que estaban en edici�n.
+    	 *
+    	 * */
+        //mp.stop();
+
+        //Toast.makeText(this, "onPause", Toast.LENGTH_SHORT).show();
+        super.onPause();
+
+        //Para preserver el scroll del listView
+        index = lista.getFirstVisiblePosition(); // store index using shared preferences
     }
 
 
