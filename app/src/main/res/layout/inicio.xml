@@ -12,8 +12,8 @@
     <FrameLayout
         android:id="@+id/frame"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/status_bar_kitkat_height"
-        android:background="?colorPrimary"/>
+        android:layout_height="@dimen/status_bar_height"
+        android:background="?colorPrimaryDark"/>
 
     <android.support.v7.widget.Toolbar
 
