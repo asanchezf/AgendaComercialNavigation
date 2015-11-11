@@ -8,15 +8,15 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.videumcorp.desarrolladorandroid.navigatio.R;
 
 import java.util.ArrayList;
 
 import Beans.ContactosBorrar;
 
-import com.videumcorp.desarrolladorandroid.navigatio.R;
-
 /**
  * Created by Susana on 31/08/2015.
+ * Clase adaptadora utilizada para gestionar el borrado masivo de clientes...
  */
 public class CustomArrayAdapter_2 extends ArrayAdapter<ContactosBorrar> implements
         View.OnClickListener {
@@ -68,6 +68,7 @@ public class CustomArrayAdapter_2 extends ArrayAdapter<ContactosBorrar> implemen
         holder.getCheckBox().setChecked(contactosBorrar.isChecked());
         holder.getCheckBox().setOnClickListener(this);
 
+        //TODO:crear strings para las descripciones de los tipos.
         if(contactosBorrar.getId_Categoria()==1){
             //descripcion.setText("Alcorcón");
             holder.getDescripcion().setText("Alcorcón");
@@ -96,13 +97,16 @@ public class CustomArrayAdapter_2 extends ArrayAdapter<ContactosBorrar> implemen
             holder.getDescripcion().setText("Otro país");
         }
 
-
         else if (contactosBorrar.getId_Categoria()==6){
             //descripcion.setText("SIN ZONA");
             //categoria.setImageResource(R.drawable.importado);
-            holder.getDescripcion().setText("SIN ZONA");
+            holder.getDescripcion().setText("IMPORTADO ANDROID");
         }
-
+        else if (contactosBorrar.getId_Categoria()==7){
+            //descripcion.setText("SIN ZONA");
+            //categoria.setImageResource(R.drawable.importado);
+            holder.getDescripcion().setText("IMPORTADO WB");
+        }
 
         //CheckBox checkBox1 = (CheckBox) convertView;
         //int nItems = checkBox1.get(contactosBorrar.get_id());

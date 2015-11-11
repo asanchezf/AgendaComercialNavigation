@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import Beans.Clientes;
 import Beans.Contactos;
 import Beans.ContactosBorrar;
 import modelo.DBhelper;
@@ -42,6 +43,7 @@ public class SQLControlador {
 
 
     public static final String IMPORTADO_OBSERVACIONES = "Contacto importado desde la agenda de Android el día: ";
+	public static final String SINCRONIZADO_OBSERVACIONES = "Cliente sincronizado con la Web el día: ";
     //public static final String IMPORTADO_OBSERVACIONES =(getResources().getString(R.string.agenda_texto_vacio));
     //public static final String IMPORTADO_OBSERVACIONES ="@style/observaciones_importados";
 
@@ -155,18 +157,99 @@ public class SQLControlador {
 		db.endTransaction();
 	}
 
-	//Se utiliza para importar los contactos de android
+	//Se utiliza para que una vez importados los clientes de la BB.DD. de MySQL se puedan comparar los contactos y solo insertar los que
+	//no existieran antes.
+	public void insertarSincronizados(ArrayList<Clientes> arrayListclientes, String fecha){
+		/*
+	    * UNA VEZ TRAIDOS LOS Clientes con el  WebService que hay en LA BB.DD. de MySQL
+	    * SE COMPARAN CON LO QUE HAYA EN LA BB.DD. DE LA APP en SQLite
+		* Tenemos todos los clientes de la BB.DD. en arrayListclientes
+		* Borramos de la BB.DD. de la app los que ya hayan sido importados/sincronizados antes (categoría ?)
+		* Buscamos en la BB.DD. los contactos por nombre y los comparamos que con que tenemos en arrayListclientes
+		* que hemos traido con el WebService.
+		* Insertamos los contacots de BB.DD. Mysql que tenemos en arrayListclientes y que no se hallen en la BB.DD. SQLite de la app.
+		* */
+		Clientes clientes;
+		//ArrayList<Contactos> arraListPorNombre = new ArrayList<Contactos>();//para comparar datos traidos con otros antes de hacer el insert
+
+
+		ContentValues valores=new ContentValues();
+
+
+
+		db.beginTransaction();
+
+		//borrarTodos();
+//		borrarImportados();
+
+
+		//borrarImportados(nombre);
+
+		//Borramos los que ya han sido previamente importados/sincronizados anteriormente para no tener duplicados
+		borrarSincronizadosWeb();//categoría 7
+
+		//Busco por nombre y por categor�a
+//		for (int i = 0; i < arraListTodos.size(); i++) {
+//
+//			arraListPorNombre=BuscarTodos();
+//
+//			String nombre=ArrayListcontactos.get(i).getNombre();
+//
+//		}
+
+
+		for (int i = 0; i < arrayListclientes.size(); i++) {
+
+			String nombre=arrayListclientes.get(i).getNombre();
+			String apellidos=arrayListclientes.get(i).getApellidos();
+			String direccion=arrayListclientes.get(i).getDireccion();
+			String telefono=arrayListclientes.get(i).getTelefono();
+			String email=arrayListclientes.get(i).getEmail();
+			//int categoria=arrayListclientes.get(i).getIdCategoria();
+			String observaciones=arrayListclientes.get(i).getObservaciones();
+
+			int categoria=7;//SincronizadosWeb: categoria 7.
+
+			/*
+			* Una vez borrados los SincronizadosWeb comparamos los nombres que tengamos en el ArrayListcontactos
+			* con los que haya en la BB.DD. de la app. Si no coinciden es que es un contacto nuevo y tenemos
+			* que ingresarlo en la BB.DD. de la app con la categoría de SincronizadosWeb (7).
+			* */
+			String nombrequeexiste=BuscarNombreWebService(nombre);
+
+			if(!nombrequeexiste.equals(nombre)){
+
+				valores.put(C_COLUMNA_NOMBRE, nombre);
+				valores.put(C_COLUMNA_APELLIDOS, apellidos);
+				valores.put(C_COLUMNA_DIRECCION, direccion);
+				valores.put(C_COLUMNA_TELEFONO, telefono);
+				valores.put(C_COLUMNA_EMAIL, email);
+				valores.put(C_COLUMNA_CATEGORIA, categoria);
+				valores.put(C_COLUMNA_OBSERVACIONES, SINCRONIZADO_OBSERVACIONES+fecha);
+				db.insert(C_TABLA, null, valores);
+			}
+
+		}
+
+		db.setTransactionSuccessful();
+		db.endTransaction();
+
+
+		//cerrar();
+
+	}
+
+	//Se utiliza para que una vez importada la agenda android se puedan comparar los contactos y solo insertar los que
+	//no existieran antes.
 	public void ImportCollectionContactsContent(ArrayList<Contactos> ArrayListcontactos, String fecha){
 		/*
-	    * PARA IMPORTAR LOS CONTACTOS DE ANDROID Y COMPARAR CON LO QUE HAYA EN LA BB.DD. DE LA APP...
+	    * UNA VEZ IMPORTADOS LOS CONTACTOS DE LA AGENDA DE ANDDROID SE COMPARAN CON LO QUE HAYA EN LA BB.DD. DE LA APP...
 		* Tenemos toda la Agenda de Android en ArrayListcontactos
 		* Borramos de la BB.DD. de la app los que ya hayan sido importados antes (categoría 5)
 		* Buscamos en la BB.DD. los contactos por nombre y los comparemos que con que tenemos en ArrayListcontactos
 		* que hemos traido de la agenda de Android.
 		* Insertamos los contacots de Android que tenemos en ArrayListcontactos y que no se hallen en la BB.DD. de la app.
 		* */
-
-
 
 		//Fecha de la actualizaci�n
 		Contactos contactos;
@@ -514,8 +597,10 @@ public class SQLControlador {
 		// SQLiteDatabase db = this.getReadableDatabase();// Abrimos en modo
 		// lectura.
 		// Nombre, Apellidos, Direccion, Telefono, Email new String[] { nombre });
-		
-		String query="Select * from Contactos where Nombre= ?";
+
+		//TODO: poner constante de valor Id_categoria para importados de Android
+		//
+		String query="Select * from Contactos where  Nombre= ?";
 		String[] args=new String[] {nombre};
 		Cursor rs = db.rawQuery(query, args);
 		
@@ -541,6 +626,43 @@ public class SQLControlador {
 			return "";
 		}
 		
+	}
+
+	public String BuscarNombreWebService(String nombre) {
+		//Contactos contactos;
+		//ArrayList<Contactos> arraList = new ArrayList<Contactos>();
+		// SQLiteDatabase db = this.getReadableDatabase();// Abrimos en modo
+		// lectura.
+		// Nombre, Apellidos, Direccion, Telefono, Email new String[] { nombre });
+
+		//TODO: poner constante de valor Id_categoria para sincronizados web
+		//String query="Select * from Contactos where Id_Categoria=7 and Nombre= ?";
+		String query="Select * from Contactos where Id_Categoria =7 and Nombre= ?";
+		String[] args=new String[] {nombre};
+		Cursor rs = db.rawQuery(query, args);
+
+//		Cursor rs = db
+//				.rawQuery("Select Nombre from Contactos where Nombre= ?", new String[] {nombre});
+
+		// Cursor c = db.query( true, C_TABLA, columnas, C_COLUMNA_ID + "=" +
+		// id, null, null, null, null, null);
+		// Cursor rs = db.query(true, C_TABLA, arraList, C_COLUMNA_ID + "=" +
+		// id, null, null, null, null, null);
+
+		// Nos movemos al primer registro de la consulta
+		if (rs != null) {
+			//rs.moveToFirst();
+			rs.moveToFirst();
+		}
+
+
+		if(rs.getCount()>0){
+			return rs.getString(1);
+		}
+		else{
+			return "";
+		}
+
 	}
 	
 	
@@ -612,7 +734,14 @@ public class SQLControlador {
 	    //db.close();  
 	}
 
+	public void borrarSincronizadosWeb() {
+		//SQLiteDatabase db = getWritableDatabase();
+		String where= "Id_Categoria  = ?" ;
+		String[] argumentos={"7"};
+		db.delete(C_TABLA,where, argumentos);
 
+		//db.close();
+	}
 
 	
 }

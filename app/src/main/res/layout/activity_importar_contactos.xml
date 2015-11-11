@@ -26,13 +26,15 @@
 
     <TextView
         android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:text="@string/confirm_import"
-        android:textColor="#2E64FE"
-        android:textSize="17dp"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:background="#0174DF"
+        android:text="@string/confirm_importWebService"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        android:textStyle="bold"
         android:layout_below="@+id/toolbar"/>
 
     <TextView
@@ -53,7 +55,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView1"
+        android:visibility="invisible"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="34dp" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:id="@+id/barradeprogreso2"
+        android:visibility="invisible"
+        android:layout_below="@+id/textView1"
+        />
 
 </RelativeLayout>

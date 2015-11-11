@@ -56,10 +56,12 @@
     <string name="agenda_modificacion_vacia">El nombre del cliente está vacío. Revise el formulario.</string>
     <string name="Observaciones">Observaciones</string>
     <string name="title_activity_importar_contactos">Importar Contactos de Android</string>
+    <string name="title_activity_importar_contactosWebService">Sincronizar Contactos en red</string>
     <string name="confirm_import">Se ha finalizado la importación de los contactos guardados en Android</string>
+    <string name="confirm_importWebService">Se ha finalizado la importación de los contactos incluidos en red</string>
 
     <string name="aceptar_import">A continuación se va a proceder a importar todos los contactos que hubiera en su agenda de Android</string>
-
+    <string name="aceptar_importWebService">A continuación se va a proceder a importar todos los contactos que hubiera en red y que estén incluidos en tu agenda</string>
     <string name="titulo_activity_lista">CLIENTES INCLUIDOS EN TU AGENDA</string>
 
     <string name="no_hay_registros">NO HAY CLIENTES EN TU AGENDA</string>

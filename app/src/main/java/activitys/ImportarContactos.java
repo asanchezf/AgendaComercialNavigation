@@ -29,8 +29,9 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import Beans.Contactos;
-//import antonio.ejemplos.agendacomercial.R;
 import controlador.SQLControlador;
+
+//import antonio.ejemplos.agendacomercial.R;
 
 
 public class ImportarContactos extends AppCompatActivity {
@@ -110,7 +111,7 @@ public class ImportarContactos extends AppCompatActivity {
 				new DialogInterface.OnClickListener() {
 
 					public void onClick(DialogInterface dialog, int boton) {
-
+						barraProgreso.setVisibility(View.VISIBLE);
 						// ---Hacer alg�n trabajo en el hilo de fondo---
 						new Thread(new Runnable() {
 							public void run() {
@@ -533,7 +534,7 @@ public class ImportarContactos extends AppCompatActivity {
 		
 		
 ////==============================================================================================================		
-		
+		//Construimos la fecha de la operación de importación de la agenda
 		 Calendar c1 = Calendar.getInstance();
 			Calendar c2 = new GregorianCalendar();
 			
@@ -545,7 +546,7 @@ public class ImportarContactos extends AppCompatActivity {
 			String fecha=dia+"/"+ mes+"/"+annio;
 		 
 		 
-		 
+		 //Vamos a SQLControlador para comparar lo que hemos traido de Android con lo que había en SQLite
 		Connection = new SQLControlador(getApplicationContext());//Objeto SQLControlador
 		try {
 			Connection.abrirBaseDeDatos(2);
@@ -566,15 +567,13 @@ public class ImportarContactos extends AppCompatActivity {
 		}
 			
 	//===============================	
-		
-		
 
 	}
-	
-	
 
-	
-	
+
+
+
+
 	
 	
 	@Override

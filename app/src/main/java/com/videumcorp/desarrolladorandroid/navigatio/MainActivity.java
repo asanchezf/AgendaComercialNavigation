@@ -1,8 +1,11 @@
 package com.videumcorp.desarrolladorandroid.navigatio;
 
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -15,11 +18,14 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import activitys.ActivityLista;
 import activitys.AltaUsuarios;
 import activitys.BorrarUsuarios;
 import activitys.ImportarContactos;
+import activitys.ImportarWebService;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -103,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void setupNavigationDrawerContent(NavigationView navigationView) {
+    private void setupNavigationDrawerContent(final NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -211,10 +217,49 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(intentAyudda);
                                 return true;
 
+                            case R.id.item_navigation_drawer_sync:
+                                menuItem.setChecked(true);
+                                //Snackbar.make(navigationView, "No ha sido posible la conexión con el servidor", Snackbar.LENGTH_LONG).show();
+
+                                conectarConWebService();
+                                
+
+
+                                return true;
+
                         }
                         return true;
                     }
                 });
+    }
+
+
+    public void conectarConWebService(){
+
+        //Primeramente se comprueba que tengamos la conexión a internet habilitada....
+        try {
+            ConnectivityManager connMgr = (ConnectivityManager)
+                    getSystemService(Context.CONNECTIVITY_SERVICE);
+
+            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+            /*
+            GetCommentsTask hilo=new GetCommentsTask();
+            hilo.cargarContexto(getApplicationContext());
+            new GetCommentsTask().execute(listaJSon);*/
+            if (networkInfo != null && networkInfo.isConnected()){
+                Intent intentWebService = new Intent(MainActivity.this,ImportarWebService.class);
+                startActivity(intentWebService);}
+
+            else {
+                Toast.makeText(MainActivity.this, "Error de conexion", Toast.LENGTH_LONG).show();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 

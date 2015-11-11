@@ -162,10 +162,11 @@ public class Contacts_Adapter_Images_Search extends ArrayAdapter<Contactos> impl
         * 			3:Madrid CC.AA.
         * 			4:Otra CC.AA..
         * 			5:Otro País
-        * 		    6:Otros
+        * 		    6:IMPORTADO ANDROID..sin zona.
+        * 		    7:IMPORTADO ANDROID...sin zona.
                 * valorar posibilidad de crear otra tabla...
         * */
-
+//TODO:crear strings para las descripciones de los tipos.
         if (contactos.getId_Categoria() == 1) {
             holder.descripcion.setText("Alcorcón");
             holder.categoria.setImageResource(R.drawable.furgopeque);
@@ -184,8 +185,11 @@ public class Contacts_Adapter_Images_Search extends ArrayAdapter<Contactos> impl
             holder.descripcion.setText("Otro país");
             holder.categoria.setImageResource(R.drawable.mundo);
         } else if (contactos.getId_Categoria() == 6) {
-            holder.descripcion.setText("SIN ZONA");
+            holder.descripcion.setText("IMPORTADO ANDROID");
             holder.categoria.setImageResource(R.drawable.importado);
+        }else if (contactos.getId_Categoria() == 7) {
+            holder.descripcion.setText("IMPORTADO WB");
+            holder.categoria.setImageResource(R.drawable.sincronizado);
         }
 
 

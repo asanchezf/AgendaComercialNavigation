@@ -28,6 +28,7 @@ public class DBhelper extends SQLiteOpenHelper {
  * 			4:Otra CC.AA..
  * 			5:Otro País
  * 		    6:Sin zona o importado de la Agenda
+ * 		    7:Servidor Web
  * valorar posibilidad de crear otra tabla...
  * */
 	
@@ -51,6 +52,9 @@ public class DBhelper extends SQLiteOpenHelper {
 		db.execSQL("INSERT INTO Contactos(Nombre,Apellidos,Direccion,Telefono,Email,Id_Categoria,Observaciones) VALUES('Otra CC..AA.','Apellidos','Rubens, 12 M�stoles, MADRID', '659355808','email@gmail.com',4,'Observaciones incluidas por defecto')");
 		db.execSQL("INSERT INTO Contactos(Nombre,Apellidos,Direccion,Telefono,Email,Id_Categoria,Observaciones) VALUES('Otro País','Apellidos','Rubens, 12 M�stoles, MADRID', '659355808','email@gmail.com',5,'Observaciones incluidas por defecto')");
 		db.execSQL("INSERT INTO Contactos(Nombre,Apellidos,Direccion,Telefono,Email,Id_Categoria,Observaciones) VALUES('Otros','Apellidos','Rubens, 12 M�stoles, MADRID', '659355808','email@gmail.com',6,'Observaciones incluidas por defecto')");
+
+		db.execSQL("INSERT INTO Contactos(Nombre,Apellidos,Direccion,Telefono,Email,Id_Categoria,Observaciones) VALUES('Servidor Web','Apellidos','Rubens, 12 M�stoles, MADRID', '659355808','email@gmail.com',7,'Observaciones incluidas por defecto')");
+
 
 		Log.i(this.getClass().toString(), "Datos iniciales creados. BB.DD. creada");
 		
