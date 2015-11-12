@@ -63,7 +63,7 @@ public class BorrarUsuarios extends AppCompatActivity{
 
         lista = (ListView) findViewById(android.R.id.list);
 
-        lista.setDividerHeight(5);//Líneas más anchas entre los itens de la lista
+        lista.setDividerHeight(2);//Líneas más anchas entre los itens de la lista
 
         //Añadimos la toolbar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
