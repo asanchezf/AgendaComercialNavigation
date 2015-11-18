@@ -234,12 +234,12 @@ public class ModificarUsuarios extends AppCompatActivity {
 					dbConnection.cerrar();
 					
 					// Devolvemos el control y cerramos la Activity
-//					Intent i = new Intent(ModificarUsuarios.this, MainActivity.class);
+//					Intent i = new Intent(ModificarUsuarios.this, Inicio.class);
 //					startActivity(i);
 					
 					setResult(RESULT_OK);
 					finish();
-					//Para actualizar datos en MainActivity Se va a llamar a Consultar() desde Onrestart() del com.agendacomercial.navigatio.
+					//Para actualizar datos en Inicio Se va a llamar a Consultar() desde Onrestart() del com.agendacomercial.navigatio.
 					
 
 				} catch (SQLException e) {

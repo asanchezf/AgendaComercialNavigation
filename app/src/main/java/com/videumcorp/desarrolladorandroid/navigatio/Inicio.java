@@ -29,7 +29,7 @@ import activitys.ImportarContactos;
 import activitys.ImportarWebService;
 
 
-public class MainActivity extends AppCompatActivity {
+public class Inicio extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     Toolbar toolbar;
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //Intent in=new Intent(MainActivity.this,ActivityLista.class);
+                //Intent in=new Intent(Inicio.this,ActivityLista.class);
                 //startActivity(in);
                 finish();
 
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
 
             case R.id.menu_ver_agenda:
-                Intent intent=new Intent(MainActivity.this,ActivityLista.class);
+                Intent intent=new Intent(Inicio.this,ActivityLista.class);
                 startActivity(intent);
 
                 return true;
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 drawerLayout.closeDrawer(GravityCompat.START);
 
-                                Intent intent = new Intent(MainActivity.this, ActivityLista.class);
+                                Intent intent = new Intent(Inicio.this, ActivityLista.class);
                                 startActivity(intent);
                                 return true;
 
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                                 //textView.setText(menuItem.getTitle());
                                 drawerLayout.closeDrawer(GravityCompat.START);
 
-                                Intent intent2 = new Intent(MainActivity.this, AltaUsuarios.class);
+                                Intent intent2 = new Intent(Inicio.this, AltaUsuarios.class);
                                 startActivity(intent2);
 
                                 return true;
@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
                                 //textView.setText(menuItem.getTitle());//ES LA TEXTVIEW QUE HE BORRADO
                                 drawerLayout.closeDrawer(GravityCompat.START);
 
-                                Intent intentborrar = new Intent(MainActivity.this, BorrarUsuarios.class);
+                                Intent intentborrar = new Intent(Inicio.this, BorrarUsuarios.class);
                                 startActivity(intentborrar);
                                 return true;
 
@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
                                 //textView.setText(menuItem.getTitle());//ES LA TEXTVIEW QUE HE BORRADO
                                 drawerLayout.closeDrawer(GravityCompat.START);
 
-                                Intent intent3 = new Intent(MainActivity.this, ImportarContactos.class);
+                                Intent intent3 = new Intent(Inicio.this, ImportarContactos.class);
                                 startActivity(intent3);
                                 return true;
 
@@ -201,9 +201,9 @@ public class MainActivity extends AppCompatActivity {
                             case R.id.item_navigation_drawer_settings://Navegar por internet
                                 menuItem.setChecked(true);
                                 //textView.setText(menuItem.getTitle());//ES LA TEXTVIEW QUE HE BORRADO
-                                //Toast.makeText(MainActivity.this, "Launching " + menuItem.getTitle().toString(), Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(Inicio.this, "Launching " + menuItem.getTitle().toString(), Toast.LENGTH_SHORT).show();
                                 //drawerLayout.closeDrawer(GravityCompat.START);
-                                //Intent intent4 = new Intent(MainActivity.this, SettingsActivity.class);
+                                //Intent intent4 = new Intent(Inicio.this, SettingsActivity.class);
                                 //startActivity(intent4);
 
                                 Intent intentweb = new Intent(Intent.ACTION_VIEW);
@@ -215,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
 
                             case R.id.item_navigation_drawer_help_and_feedback:
                                 menuItem.setChecked(true);
-                                Intent intentAyudda = new Intent(MainActivity.this,SettingsActivity.class);
+                                Intent intentAyudda = new Intent(Inicio.this,SettingsActivity.class);
                                 startActivity(intentAyudda);
                                 return true;
 
@@ -249,13 +249,13 @@ public class MainActivity extends AppCompatActivity {
                     connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 
             if ((networkInfo != null) && networkInfo.isConnected() && wifi.isConnected()){
-                Intent intentWebService = new Intent(MainActivity.this,ImportarWebService.class);
+                Intent intentWebService = new Intent(Inicio.this,ImportarWebService.class);
                 startActivity(intentWebService);}
 
             else {
 
 
-                //Toast.makeText(MainActivity.this, "Error de conexion", Toast.LENGTH_LONG).show();
+                //Toast.makeText(Inicio.this, "Error de conexion", Toast.LENGTH_LONG).show();
                 //Snackbar.make(navigationView, "No ha sido posible la conexión con el servidor", Snackbar.LENGTH_LONG).show();
                 //Snackbar.make(view, "Su terminal no tiene habilitada ninguna conexión de red", Snackbar.LENGTH_LONG)
                 Snackbar snack = Snackbar.make(view, "Su terminal no tiene habilitada ninguna conexión wifi para poder acceder a este recurso.", Snackbar.LENGTH_LONG);

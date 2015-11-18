@@ -165,11 +165,11 @@ public class AltaUsuarios extends AppCompatActivity {
 				Toast.makeText(getApplicationContext(), "Se ha incluido en la agenda a " + nom, Toast.LENGTH_SHORT).show();
 				Connection.cerrar();
 				
-//				Intent i = new Intent(AltaUsuarios.this, MainActivity.class);
+//				Intent i = new Intent(AltaUsuarios.this, Inicio.class);
 //				startActivity(i);
 				setResult(RESULT_OK);
 			    finish();
-			    //Para actualizar datos en MainActivity Se va a llamar a Consultar() desde Onrestart() del com.agendacomercial.navigatio.
+			    //Para actualizar datos en Inicio Se va a llamar a Consultar() desde Onrestart() del com.agendacomercial.navigatio.
 			    
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
@@ -263,11 +263,11 @@ public class AltaUsuarios extends AppCompatActivity {
 				Toast.makeText(getApplicationContext(), "Se ha incluido en la agenda a " + nom, Toast.LENGTH_SHORT).show();
 				Connection.cerrar();
 
-//				Intent i = new Intent(AltaUsuarios.this, MainActivity.class);
+//				Intent i = new Intent(AltaUsuarios.this, Inicio.class);
 //				startActivity(i);
 				setResult(RESULT_OK);
 				finish();
-				//Para actualizar datos en MainActivity Se va a llamar a Consultar() desde Onrestart() del com.agendacomercial.navigatio.
+				//Para actualizar datos en Inicio Se va a llamar a Consultar() desde Onrestart() del com.agendacomercial.navigatio.
 
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block

@@ -19,7 +19,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.videumcorp.desarrolladorandroid.navigatio.MainActivity;
+import com.videumcorp.desarrolladorandroid.navigatio.Inicio;
 import com.videumcorp.desarrolladorandroid.navigatio.R;
 
 import org.json.JSONArray;
@@ -413,10 +413,10 @@ public class ImportarWebService extends AppCompatActivity {
             que se realiz� al array JSON*/
 
 			 //ADAPTADOR UTILIZANDO UN ARRAYLIST DE LA CLASE CLIENTES
-			 //ArrayAdapter<Clientes> adaptador=new ArrayAdapter<Clientes>(MainActivity.this,android.R.layout.simple_list_item_1,listaClientes);
+			 //ArrayAdapter<Clientes> adaptador=new ArrayAdapter<Clientes>(Inicio.this,android.R.layout.simple_list_item_1,listaClientes);
 
 			 //ADAPTADOR UITLIZANDO UN ARRAY DE STRINGS
-			 //ArrayAdapter<String>adaptador=new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_list_item_1,arrayDeStrings);
+			 //ArrayAdapter<String>adaptador=new ArrayAdapter<String>(Inicio.this,android.R.layout.simple_list_item_1,arrayDeStrings);
 
 			 // Relacionar adaptador a la lista
 			 //listaJSon.setAdapter(adaptador);
@@ -429,7 +429,7 @@ public class ImportarWebService extends AppCompatActivity {
 			 String observacionesparasalir="El recurso no está disponible en estos momentos. Inténtalo más tarde...";
 			 if(listaClientes.size()==0){
 				 Toast.makeText(getApplicationContext(), observacionesparasalir, Toast.LENGTH_LONG).show();
-				 Intent intent=new Intent(ImportarWebService.this, MainActivity.class);
+				 Intent intent=new Intent(ImportarWebService.this, Inicio.class);
 				 startActivity(intent);
 			 }
 

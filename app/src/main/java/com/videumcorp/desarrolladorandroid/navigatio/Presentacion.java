@@ -50,7 +50,7 @@ public class Presentacion extends Activity {
 
     private void openApp(){
 
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, Inicio.class));
         //overridePendingTransition(R.anim.right_in, R.anim.right_out);
         //overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         //overridePendingTransition(R.anim.zoom_back_in, R.anim.zoom_back_out);

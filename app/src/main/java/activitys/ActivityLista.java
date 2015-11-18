@@ -804,7 +804,7 @@ public class ActivityLista extends AppCompatActivity implements OnQueryTextListe
 
 
             //case R.id.menu_editar:
-            //i = new Intent(MainActivity.this, ModificarUsuarios.class);
+            //i = new Intent(Inicio.this, ModificarUsuarios.class);
             // i.putExtra(C_MODO, C_CREAR);
             // startActivityForResult(i, C_CREAR);
             //editar(info.id);
