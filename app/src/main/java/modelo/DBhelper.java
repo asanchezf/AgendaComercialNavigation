@@ -12,6 +12,7 @@ public class DBhelper extends SQLiteOpenHelper {
 	private static String name = "Agenda_clientes.db";
 	private static CursorFactory factory = null;
 
+	//PRIMERA VERSIÓN
 	private String sql = "CREATE TABLE Contactos (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
 			+ "Nombre TEXT NOT NULL, "
 			+ "Apellidos TEXT, "
@@ -20,8 +21,24 @@ public class DBhelper extends SQLiteOpenHelper {
 			+ "Email TEXT,"
 			+ "Id_Categoria INTEGER,"//Campo nuevo
 			+ "Observaciones TEXT)";//Campo nuevo
+
+
+	//SEGUNDA VERSIÓN
+//	private String sql2 = "CREATE TABLE Contactos (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
+//			+ "Nombre TEXT NOT NULL, "
+//			+ "Apellidos TEXT, "
+//			+ "Direccion TEXT, "
+//			+ "Telefono TEXT, "
+//			+ "Email TEXT,"
+//			+ "Id_Categoria INTEGER,"
+//			+ "Observaciones TEXT,"
+//			+ "Importado INTEGER," //Campo nuevo
+//			+ "Sincronizado INTEGER)";//Campo nuevo
+
+
+
 /*
- *Id_Categoria:
+ *Categorías existentes:
  *          1:Alcorcón y alrededores
  * 			2:Madrid capital
  * 			3:Madrid CC.AA.
@@ -40,7 +57,7 @@ public class DBhelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		//Creamos la BB.DD. Agenda.db
+		//Creamos la BB.DD. Agenda_clientes.db
 		db.execSQL(sql);
 		Log.i(this.getClass().toString(), "Tabla Contactos creada");
 		
@@ -64,7 +81,19 @@ public class DBhelper extends SQLiteOpenHelper {
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// TODO Auto-generated method stub
-		
+
+		//NOTA: Por simplicidad del ejemplo aquí utilizamos directamente
+		// la opción de eliminar la tabla anterior y crearla de nuevo
+		// vacía con el nuevo formato.
+		// Sin embargo lo normal será que haya que migrar datos de la
+		// tabla antigua a la nueva, por lo que este método debería
+		// ser más elaborado.
+		//Se elimina la versión anterior de la tabla
+			//db.execSQL("DROP TABLE IF EXISTS Contactos");
+		//Se crea la nueva versión de la tabla
+			//db.execSQL(sqlCreate);
+
+
 	}
 
 }

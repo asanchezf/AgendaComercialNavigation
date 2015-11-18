@@ -4,7 +4,6 @@ package activitys;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,15 +16,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.videumcorp.desarrolladorandroid.navigatio.R;
 
 import java.sql.SQLException;
 
-//import antonio.ejemplos.agendacomercial.R;
 import controlador.SQLControlador;
+
+//import antonio.ejemplos.agendacomercial.R;
 
 public class AltaUsuarios extends AppCompatActivity {
 	
@@ -35,7 +34,7 @@ public class AltaUsuarios extends AppCompatActivity {
 	private EditText telefono;
 	private EditText email;
 	
-	private Spinner categoria;
+	//private Spinner categoria;
 	
 	private RadioButton radio1,radio2,radio3,radio4,radio5,radio6;
 	private EditText observaciones;
@@ -44,7 +43,7 @@ public class AltaUsuarios extends AppCompatActivity {
 	private Button guardar;
 	
 	private SQLControlador Connection;
-	private SQLiteDatabase db;
+	//private SQLiteDatabase db;
 	
 	private boolean validar=true;
 

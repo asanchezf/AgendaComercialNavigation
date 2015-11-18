@@ -3,6 +3,9 @@
 
     <style name="AppTheme" parent="Base.AppTheme">
 
+
+
+
     </style>
 
     <!--Se deshabilita la Action Bar para poder usar una ToolBar con "Theme.AppCompat.Light.NoActionBar">

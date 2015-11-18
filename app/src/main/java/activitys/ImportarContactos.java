@@ -6,7 +6,6 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -47,13 +46,13 @@ public class ImportarContactos extends AppCompatActivity {
 	
 	private ArrayList<Contactos> ArrayListcontactos;
 	
-	private SQLiteDatabase db;
+	//private SQLiteDatabase db;
 	
 	//Para la barra de progreso
 		private static int progreso;
 		private ProgressBar barraProgreso;
 		private TextView txt;
-		private int estatusProgreso = 0;
+		//private int estatusProgreso = 0;
 		private Handler manejador = new Handler();//Manejador del hilo
 
 		private static final int IMPORTADO = 6;
@@ -454,7 +453,7 @@ public class ImportarContactos extends AppCompatActivity {
 	                    
 	 							
 	 							
-//???????????	                    
+//???????????	           //CATEGORÍA SE INFORMA CON VALOR 6. lA VARIABLE ESTÁ DEFINIDA ARRIBA...
 	                     contactos=new Contactos(id_convert,name,apellidos,direccion, phone,email,categoria,observaciones);
 	  	            	ArrayListcontactos.add(contactos);
 	 

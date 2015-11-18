@@ -78,7 +78,7 @@ public class CustomArrayAdapter_2 extends ArrayAdapter<ContactosBorrar> implemen
         else if (contactosBorrar.getId_Categoria()==2){
             //descripcion.setText("Madrid capital");
             //categoria.setImageResource(R.drawable.furgonew);
-            holder.getDescripcion().setText("Madrid capital");
+                holder.getDescripcion().setText("Madrid capital");
 
         }else if (contactosBorrar.getId_Categoria()==3){
             //descripcion.setText("Madrid CC.AA.");

@@ -9,6 +9,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -17,8 +18,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import activitys.ActivityLista;
 import activitys.AltaUsuarios;
@@ -88,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-    }
+   }
 
 
     @Override
@@ -219,9 +221,9 @@ public class MainActivity extends AppCompatActivity {
 
                             case R.id.item_navigation_drawer_sync:
                                 menuItem.setChecked(true);
-                                //Snackbar.make(navigationView, "No ha sido posible la conexión con el servidor", Snackbar.LENGTH_LONG).show();
+                               // Snackbar.make(navigationView, "No ha sido posible la conexión con el servidor", Snackbar.LENGTH_LONG).show();
 
-                                conectarConWebService();
+                                conectarConWebService(navigationView);
                                 
 
 
@@ -234,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void conectarConWebService(){
+    public void conectarConWebService(View view){
 
         //Primeramente se comprueba que tengamos la conexión a internet habilitada....
         try {
@@ -243,16 +245,32 @@ public class MainActivity extends AppCompatActivity {
 
             NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
-            /*
-            GetCommentsTask hilo=new GetCommentsTask();
-            hilo.cargarContexto(getApplicationContext());
-            new GetCommentsTask().execute(listaJSon);*/
-            if (networkInfo != null && networkInfo.isConnected()){
+            final android.net.NetworkInfo wifi =
+                    connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+            if ((networkInfo != null) && networkInfo.isConnected() && wifi.isConnected()){
                 Intent intentWebService = new Intent(MainActivity.this,ImportarWebService.class);
                 startActivity(intentWebService);}
 
             else {
-                Toast.makeText(MainActivity.this, "Error de conexion", Toast.LENGTH_LONG).show();
+
+
+                //Toast.makeText(MainActivity.this, "Error de conexion", Toast.LENGTH_LONG).show();
+                //Snackbar.make(navigationView, "No ha sido posible la conexión con el servidor", Snackbar.LENGTH_LONG).show();
+                //Snackbar.make(view, "Su terminal no tiene habilitada ninguna conexión de red", Snackbar.LENGTH_LONG)
+                Snackbar snack = Snackbar.make(view, "Su terminal no tiene habilitada ninguna conexión wifi para poder acceder a este recurso.", Snackbar.LENGTH_LONG);
+                ViewGroup group = (ViewGroup) snack.getView();
+                group.setBackgroundColor(getResources().getColor(R.color.md_blue_600));
+
+                //if (Build.VERSION.SDK_INT >= 17) {
+
+                //group.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            //}
+
+                snack.show();
+
+                        //.setActionTextColor(getResources().getColor(R.color.md_blue_600))
+
             }
 
         } catch (Exception e) {

@@ -461,7 +461,7 @@ public class ActivityLista extends AppCompatActivity implements OnQueryTextListe
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }// Lectura. Solo para ver
+        }
 
         contactos = dbConnection.BuscarTodos();// llamamos a BuscarTodos() que devuelve un arraylist de contactos...
         contactosAdapter_imagenes = new Contacts_Adapter_Images_Search(this,contactos);

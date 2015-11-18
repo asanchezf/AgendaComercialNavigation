@@ -163,7 +163,7 @@ public class Contacts_Adapter_Images_Search extends ArrayAdapter<Contactos> impl
         * 			4:Otra CC.AA..
         * 			5:Otro País
         * 		    6:IMPORTADO ANDROID..sin zona.
-        * 		    7:IMPORTADO ANDROID...sin zona.
+        * 		    7:SINCRONIZADO WEB...sin zona.
                 * valorar posibilidad de crear otra tabla...
         * */
 //TODO:crear strings para las descripciones de los tipos.

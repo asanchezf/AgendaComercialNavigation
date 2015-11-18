@@ -169,7 +169,8 @@ public class SQLControlador {
 		* que hemos traido con el WebService.
 		* Insertamos los contacots de BB.DD. Mysql que tenemos en arrayListclientes y que no se hallen en la BB.DD. SQLite de la app.
 		* */
-		Clientes clientes;
+
+		//Clientes clientes;
 		//ArrayList<Contactos> arraListPorNombre = new ArrayList<Contactos>();//para comparar datos traidos con otros antes de hacer el insert
 
 
@@ -251,9 +252,9 @@ public class SQLControlador {
 		* Insertamos los contacots de Android que tenemos en ArrayListcontactos y que no se hallen en la BB.DD. de la app.
 		* */
 
-		//Fecha de la actualizaci�n
-		Contactos contactos;
-		ArrayList<Contactos> arraListPorNombre = new ArrayList<Contactos>();//para comparar datos traidos con otros antes de hacer el insert
+		//BORRADO
+		//Contactos contactos;
+		//ArrayList<Contactos> arraListPorNombre = new ArrayList<Contactos>();//para comparar datos traidos con otros antes de hacer el insert
 		
 		
 		ContentValues valores=new ContentValues();
@@ -599,7 +600,11 @@ public class SQLControlador {
 		// Nombre, Apellidos, Direccion, Telefono, Email new String[] { nombre });
 
 		//TODO: poner constante de valor Id_categoria para importados de Android
-		//
+		/*Ahora buscamos nombres que previamente hayan sido insertados en BB.DD. por haber sido importados (Id_Categoria=6)
+		aunque después los haya podido modificar: cambiar la categoría
+		*/
+		//String query="Select * from Contactos where Importado=1 and Nombre= ?";
+
 		String query="Select * from Contactos where  Nombre= ?";
 		String[] args=new String[] {nombre};
 		Cursor rs = db.rawQuery(query, args);
@@ -636,7 +641,8 @@ public class SQLControlador {
 		// Nombre, Apellidos, Direccion, Telefono, Email new String[] { nombre });
 
 		//TODO: poner constante de valor Id_categoria para sincronizados web
-		//String query="Select * from Contactos where Id_Categoria=7 and Nombre= ?";
+		//String query="Select * from Contactos where Sincronizado=1 and Nombre= ?";
+
 		String query="Select * from Contactos where Id_Categoria =7 and Nombre= ?";
 		String[] args=new String[] {nombre};
 		Cursor rs = db.rawQuery(query, args);

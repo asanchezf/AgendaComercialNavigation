@@ -20,15 +20,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.videumcorp.desarrolladorandroid.navigatio.R;
 
 import java.sql.SQLException;
 
-//import antonio.ejemplos.agendacomercial.R;
 import controlador.SQLControlador;
+
+//import antonio.ejemplos.agendacomercial.R;
 
 public class ModificarUsuarios extends AppCompatActivity {
 
@@ -38,7 +38,7 @@ public class ModificarUsuarios extends AppCompatActivity {
 	private EditText telefono;
 	private EditText email;
 	
-	private Spinner categoria;
+	//private Spinner categoria;
 	
 	private RadioButton radio1,radio2,radio3,radio4,radio5,radio6;
 	private EditText observaciones;

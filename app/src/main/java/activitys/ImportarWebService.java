@@ -1,14 +1,12 @@
 package activitys;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -56,19 +54,19 @@ public class ImportarWebService extends AppCompatActivity {
 		private ProgressBar barraProgreso2;
 
 		private TextView txt;
-		private int estatusProgreso = 0;
-		private Handler manejador = new Handler();//Manejador del hilo
+		//private int estatusProgreso = 0;
+		//private Handler manejador = new Handler();//Manejador del hilo
 
-		private static final int IMPORTADO = 6;
+		private static final int SINCRONIZADO = 7;
 
         private TextView txtconfirm;
 
-    //Añadimos la toolbar
-    private Toolbar toolbar;
+    	private Toolbar toolbar;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		//Esta activity comparte layout con la activity ImportarContactos
 		setContentView(R.layout.activity_importar_contactos);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -87,7 +85,7 @@ public class ImportarWebService extends AppCompatActivity {
         }
 
 
-		progreso = 0;
+		//progreso = 0;
 		//barraProgreso = (ProgressBar) findViewById(R.id.barradeprogreso);
 		barraProgreso2=(ProgressBar)findViewById(R.id.barradeprogreso2);
 		barraProgreso2.setMax(100);
@@ -99,7 +97,6 @@ public class ImportarWebService extends AppCompatActivity {
         txtconfirm=(TextView)findViewById(R.id.txtconfirm);
 
         txtconfirm.setVisibility(View.INVISIBLE);
-
 		//barraProgreso.setVisibility(View.INVISIBLE);
 
 		//Diálogo de confirmación....
@@ -160,9 +157,9 @@ public class ImportarWebService extends AppCompatActivity {
 	//public  class SincronizarconWebService extends AsyncTask<List<String>, Integer, Boolean> {
 
 	public  class SincronizarconWebService extends AsyncTask<List<String>, Integer, ArrayList<Clientes>> {
-		String []arrayDeStrings;
+		//String []arrayDeStrings;
 		HttpURLConnection con;
-		Context contexto;
+		//Context contexto;
 		Clientes clientes;
 		ArrayList<Clientes> listaClientes=new ArrayList<Clientes>();
 
@@ -209,7 +206,7 @@ public class ImportarWebService extends AppCompatActivity {
 				//URL url = new URL("http://192.168.0.154:8080/WebServicesRESTGlassFishJEE7/webresources/contactos");
 				//URL url = new URL("http://192.168.0.157:8080/WebServicesRESTGlassFishJEE7/webresources/contactos");
 
-				//URL PARA BUSCAR POR PROPIETARIOS:
+				//URL PARA BUSCAR POR PROPIETARIO:
 				//http://localhost:8080/WebServicesRESTGlassFishJEE7/webresources/contactos/propietario/Antonio
 				URL url = new URL("http://192.168.0.157:8080/WebServicesRESTGlassFishJEE7/webresources/contactos/propietario/Antonio");
 				con = (HttpURLConnection) url.openConnection();
@@ -445,6 +442,7 @@ public class ImportarWebService extends AppCompatActivity {
 				 barraProgreso2.setVisibility(View.INVISIBLE);
 				 //txtconfirm.setVisibility(View.VISIBLE);
 				 txt.setVisibility(View.VISIBLE);
+
 			 }
 		 }
 	 }
