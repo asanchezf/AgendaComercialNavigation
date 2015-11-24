@@ -248,7 +248,10 @@ public class Inicio extends AppCompatActivity {
             final android.net.NetworkInfo wifi =
                     connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 
-            if ((networkInfo != null) && networkInfo.isConnected() && wifi.isConnected()){
+
+           // if ((networkInfo != null) && networkInfo.isConnected() && wifi.isConnected()){
+
+            if ((networkInfo != null) && networkInfo.isConnected() ){
                 Intent intentWebService = new Intent(Inicio.this,ImportarWebService.class);
                 startActivity(intentWebService);}
 

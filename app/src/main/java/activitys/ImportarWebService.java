@@ -118,8 +118,8 @@ public class ImportarWebService extends AppCompatActivity {
 					public void onClick(DialogInterface dialog, int boton) {
 
 						// ---Hacer alg�n trabajo en el hilo de fondo---
-						new SincronizarconWebService().execute();
-
+						//new SincronizarconWebService().execute();//FORMA 1-Sin utilizar Gson: GetInputStream + BufferedReader
+						new SincronizarconWebService2().execute();//FORMA 2-Utilizando Gson: GetInputStream + JsonReader en GsonClientesParser.java
 
 					}//Fin onclick del alert
 
@@ -150,11 +150,170 @@ public class ImportarWebService extends AppCompatActivity {
 	}//Fin Oncreate
 
 
+	public  class SincronizarconWebService2 extends AsyncTask<List<String>, Integer, ArrayList<Clientes>>{
+		//String []arrayDeStrings;
+		HttpURLConnection con;
+		//Context contexto;
+		Clientes clientes;
+		ArrayList<Clientes> listaClientes=new ArrayList<Clientes>();
 
 
+		protected void onProgressUpdate(Integer... values) {
 
-//PARAMETROS: LO QUE RECIBE, VARIABLE PARA CONTROLAR EL PROGRESO, LO QUE DEVUELVE
-	//public  class SincronizarconWebService extends AsyncTask<List<String>, Integer, Boolean> {
+
+			barraProgreso2.setProgress(values[0]);
+
+		}
+		@Override
+		protected void onPreExecute() {
+			barraProgreso2.setVisibility(View.VISIBLE);
+
+		}
+
+		//Recibe un List<String> y devuelve un ArrayList<Clientes>
+		@Override
+		protected ArrayList<Clientes> doInBackground(List<String>... params) {
+
+
+			Boolean result = true;
+
+			//List<String> comments = null;
+
+			//Para SQLControlador:
+			SQLControlador Connection;
+
+
+			try {
+
+				// Establecer la conexi�n..Las IPS van cambiando
+				//URL url = new URL("http://192.168.0.154:8080/WebServicesRESTGlassFishJEE7/webresources/contactos");
+				//URL url = new URL("http://192.168.0.157:8080/WebServicesRESTGlassFishJEE7/webresources/contactos");
+
+				//URL PARA BUSCAR POR PROPIETARIO:
+				URL url = new URL("http://192.168.0.157:8080/WebServicesRESTGlassFishJEE7/webresources/contactos/propietario/Antonio");
+				con = (HttpURLConnection) url.openConnection();
+
+				//con = (HttpURLConnection).openConnection(url);
+				//URLConnection con = url.openConnection();
+
+
+				// Obtener el estado del recurso
+				int statusCode = con.getResponseCode();
+				//int statusCode = url.getResponseCode();
+
+				//La conexión ha ido mal. Salimos...
+				if (statusCode != 200) {
+					//comments = new ArrayList<Clientes>();
+					//comments.add("El recurso no est� disponible");
+
+					clientes = new Clientes();
+					listaClientes.add(clientes);
+					return listaClientes;
+				} else {
+
+                    /*
+                    Parsear el flujo con formato JSON a una lista de Strings
+                    que permitan crean un adaptador
+                     */
+					InputStream in = new BufferedInputStream(con.getInputStream());
+
+
+			////////////////NUEVO utilizando Gson//////////////
+
+					// JsonAnimalParser parser = new JsonAnimalParser();
+					GsonClientesParser parser = new GsonClientesParser();
+
+					listaClientes = parser.leerFlujoJson(in);
+
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				result = false;
+				Log.e("SERVICIO REST", "ERROR DE CONEXION", e);
+
+			} finally {
+				con.disconnect();
+			}
+			//return listaClientes;
+			/// ArrayAdapter<Clientes> adaptador=new ArrayAdapter<Clientes>(contexto,android.R.layout.simple_list_item_2,listaClientes);
+
+
+			//==============================================VAMOS A SQLITE PARA COMPARAR RESULTADOS==============
+
+			//Construimos la fecha de operación de sincronización con la BB.DD. de MySql
+			Calendar c1 = Calendar.getInstance();
+			Calendar c2 = new GregorianCalendar();
+
+			String dia = Integer.toString(c2.get(Calendar.DATE));
+			String mes = Integer.toString(c2.get(Calendar.MONTH) + 1);
+			String annio = Integer.toString(c2.get(Calendar.YEAR));
+
+
+			String fecha = dia + "/" + mes + "/" + annio;
+
+
+			Connection = new SQLControlador(getApplicationContext());//Objeto SQLControlador
+			try {
+				Connection.abrirBaseDeDatos(2);
+
+				//Connection.ImportaColeccionContent(nombres, telefonos, emails);//Enviando tres colecciones. Problemas al recuperar los valores de email
+				//Connection.ImportaCursorContent(cur, pCur, emailCur);//Enviando los tres cursores del Contentprovider..Problemas recibiendo..
+
+				//Connection.ImportCollectionContactsContent(ArrayListcontactos);
+
+				Connection.insertarSincronizados(listaClientes, fecha);
+
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			//Para la barra de progreso
+			for (int z = 1; z <= 100; z++) {
+				try {
+					Thread.sleep(10);//Para la barra
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				publishProgress(z);//Actualizamos la barra de progreso
+			}
+
+			return listaClientes;
+
+		}
+
+		@Override
+		protected void onPostExecute(ArrayList<Clientes> result) {//Recibe un ArrayList<Clientes> llamado listaClientes
+
+
+			//NO SE HA CONSEGUIDO CONECTAR. MOSTRAMOS UN TOAST Y REDIRECCIONAMOS AL MAIN
+			String observacionesparasalir="El recurso no está disponible en estos momentos. Inténtalo más tarde...";
+			if(listaClientes.size()==0){
+				Toast.makeText(getApplicationContext(), observacionesparasalir, Toast.LENGTH_LONG).show();
+				Intent intent=new Intent(ImportarWebService.this, Inicio.class);
+				startActivity(intent);
+			}
+
+			else {
+				Toast.makeText(getApplicationContext(), "Se ha sincronizado la agenda de clientes", Toast.LENGTH_LONG).show();
+
+				Log.i("SERVICIO REST", "Tarea realizada");
+
+				//barraProgreso.setVisibility(View.INVISIBLE);
+				barraProgreso2.setVisibility(View.INVISIBLE);
+				//txtconfirm.setVisibility(View.VISIBLE);
+				txt.setVisibility(View.VISIBLE);
+
+			}
+		}
+
+	}
+
+//=========================================================================================================
+//PARAMETROS: LO QUE RECIBE, VARIABLE PARA CONTROLAR EL PROGRESO, LO QUE DEVUELVE al postUpdate
+	//<List<String>, Integer, Boolean>
 
 	public  class SincronizarconWebService extends AsyncTask<List<String>, Integer, ArrayList<Clientes>> {
 		//String []arrayDeStrings;
@@ -446,7 +605,7 @@ public class ImportarWebService extends AppCompatActivity {
 			 }
 		 }
 	 }
-	
+//========================================================================================================
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
