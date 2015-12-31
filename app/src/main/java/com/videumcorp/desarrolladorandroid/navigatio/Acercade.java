@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import activitys.ActivityLista;
 
-public class SettingsActivity extends AppCompatActivity {
+public class Acercade extends AppCompatActivity {
 
     Toolbar toolbar;
     TextView txt;
@@ -30,7 +30,7 @@ public class SettingsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         TypedValue typedValueColorPrimaryDark = new TypedValue();
-        SettingsActivity.this.getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValueColorPrimaryDark, true);
+        Acercade.this.getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValueColorPrimaryDark, true);
         final int colorPrimaryDark = typedValueColorPrimaryDark.data;
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(colorPrimaryDark);
@@ -59,7 +59,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         if (id == R.id.ver_agenda) {
 
-            Intent intent=new Intent(SettingsActivity.this, ActivityLista.class);
+            Intent intent=new Intent(Acercade.this, ActivityLista.class);
 
             startActivity(intent);
 

@@ -3,11 +3,13 @@ package com.videumcorp.desarrolladorandroid.navigatio;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
@@ -27,6 +29,7 @@ import activitys.AltaUsuarios;
 import activitys.BorrarUsuarios;
 import activitys.ImportarContactos;
 import activitys.ImportarWebService;
+import activitys.SettingsActivity;
 
 
 public class Inicio extends AppCompatActivity {
@@ -203,7 +206,7 @@ public class Inicio extends AppCompatActivity {
                                 //textView.setText(menuItem.getTitle());//ES LA TEXTVIEW QUE HE BORRADO
                                 //Toast.makeText(Inicio.this, "Launching " + menuItem.getTitle().toString(), Toast.LENGTH_SHORT).show();
                                 //drawerLayout.closeDrawer(GravityCompat.START);
-                                //Intent intent4 = new Intent(Inicio.this, SettingsActivity.class);
+                                //Intent intent4 = new Intent(Inicio.this, Acercade.class);
                                 //startActivity(intent4);
 
                                 Intent intentweb = new Intent(Intent.ACTION_VIEW);
@@ -215,7 +218,7 @@ public class Inicio extends AppCompatActivity {
 
                             case R.id.item_navigation_drawer_help_and_feedback:
                                 menuItem.setChecked(true);
-                                Intent intentAyudda = new Intent(Inicio.this,SettingsActivity.class);
+                                Intent intentAyudda = new Intent(Inicio.this,Acercade.class);
                                 startActivity(intentAyudda);
                                 return true;
 
@@ -223,20 +226,43 @@ public class Inicio extends AppCompatActivity {
                                 menuItem.setChecked(true);
                                // Snackbar.make(navigationView, "No ha sido posible la conexión con el servidor", Snackbar.LENGTH_LONG).show();
 
-                                conectarConWebService(navigationView);
-                                
+                                SharedPreferences preferencias = PreferenceManager.getDefaultSharedPreferences(Inicio.this);
+                                boolean activado=preferencias.getBoolean("swipe_refresh",false);
 
+                                if (activado){
+                                    conectarConWebService(navigationView);
+
+                                }
+
+                                else {
+                                    Snackbar snack = Snackbar.make(navigationView, "Su terminal no tiene habilitadas las preferencias para usar esta funcionalidad. Revíselas", Snackbar.LENGTH_LONG);
+                                    ViewGroup group = (ViewGroup) snack.getView();
+                                    group.setBackgroundColor(getResources().getColor(R.color.md_blue_600));
+                                    snack.show();
+
+                                }
+                                return true;
+
+
+                            case R.id.configuracion_app:
+                                menuItem.setChecked(true);
+
+                                Intent intentSettings=new Intent(Inicio.this, SettingsActivity.class);
+                                startActivity(intentSettings);
 
                                 return true;
 
+
                         }
+
+
                         return true;
                     }
                 });
     }
 
 
-    public void conectarConWebService(View view){
+    public boolean conectarConWebService(View view){
 
         //Primeramente se comprueba que tengamos la conexión a internet habilitada....
         try {
@@ -249,11 +275,14 @@ public class Inicio extends AppCompatActivity {
                     connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 
 
-           // if ((networkInfo != null) && networkInfo.isConnected() && wifi.isConnected()){
+            if ((networkInfo != null) && networkInfo.isConnected() && wifi.isConnected()){
 
-            if ((networkInfo != null) && networkInfo.isConnected() ){
+            //if ((networkInfo != null) && networkInfo.isConnected() ){
                 Intent intentWebService = new Intent(Inicio.this,ImportarWebService.class);
-                startActivity(intentWebService);}
+                startActivity(intentWebService);
+                return true;
+            }
+
 
             else {
 
@@ -264,13 +293,15 @@ public class Inicio extends AppCompatActivity {
                 Snackbar snack = Snackbar.make(view, "Su terminal no tiene habilitada ninguna conexión wifi para poder acceder a este recurso.", Snackbar.LENGTH_LONG);
                 ViewGroup group = (ViewGroup) snack.getView();
                 group.setBackgroundColor(getResources().getColor(R.color.md_blue_600));
+                snack.show();
 
+                return false;
                 //if (Build.VERSION.SDK_INT >= 17) {
 
                 //group.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             //}
 
-                snack.show();
+
 
                         //.setActionTextColor(getResources().getColor(R.color.md_blue_600))
 
@@ -280,7 +311,7 @@ public class Inicio extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
+        return false;
     }
 
 

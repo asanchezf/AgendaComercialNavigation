@@ -198,8 +198,9 @@ public class ImportarContactos extends AppCompatActivity {
 
 		 String idgrupo="";
 		 String observaciones="";
-		 
-		
+
+		int importado=1;
+		int sincronizado=0;
 		 
 		 if (cur.getCount() > 0) {
 			
@@ -454,7 +455,7 @@ public class ImportarContactos extends AppCompatActivity {
 	 							
 	 							
 //???????????	           //CATEGORÍA SE INFORMA CON VALOR 6. lA VARIABLE ESTÁ DEFINIDA ARRIBA...
-	                     contactos=new Contactos(id_convert,name,apellidos,direccion, phone,email,categoria,observaciones);
+	                     contactos=new Contactos(id_convert,name,apellidos,direccion, phone,email,categoria,observaciones,importado,sincronizado);
 	  	            	ArrayListcontactos.add(contactos);
 	 
 	                    // Get note.......==========================

@@ -25,6 +25,7 @@
             android:title="Sincronizar con el servidor" />
     </group>
 
+    <group android:checkableBehavior="single">
     <item android:title="Otros aspectos">
         <menu>
             <item
@@ -45,6 +46,22 @@
         </menu>
 
     </item>
+    </group>
+
+    <group android:checkableBehavior="single">
+
+        <item android:title="Configuraciones">
+                <menu>
+                 <item
+                    android:id="@+id/configuracion_app"
+                    android:icon="@drawable/ic_action_content_report"
+                    android:title="Configurar Sincronización" />
+
+                </menu>
+    </item>
+    </group>
+
+
 
     <item android:title="  ">
         </item>

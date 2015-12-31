@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 
-public class Presentacion extends Activity {
+public class MainActivity extends Activity {
 
     protected boolean active = true;
     protected int splashTime = 1900;

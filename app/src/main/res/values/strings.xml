@@ -2,10 +2,7 @@
 
     <string name="app_name">Agenda clientes</string>
 
-
     <string name="hello_world">Hello world!</string>
-
-
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_alta_usuarios">Alta nuevo cliente</string>
@@ -61,7 +58,7 @@
     <string name="confirm_importWebService">Se ha finalizado la importación de los contactos incluidos en red</string>
 
     <string name="aceptar_import">A continuación se va a proceder a importar todos los contactos que hubiera en su agenda de Android</string>
-    <string name="aceptar_importWebService">A continuación se va a proceder a importar todos los contactos que hubiera en red y que estén incluidos en tu agenda</string>
+    <string name="aceptar_importWebService">A continuación se va a proceder a importar todos los contactos que hubiera en Servidor y que estén ya incluidos en tu Agenda de Clientes</string>
     <string name="titulo_activity_lista">CLIENTES INCLUIDOS EN TU AGENDA</string>
 
     <string name="no_hay_registros">NO HAY CLIENTES EN TU AGENDA</string>
@@ -84,5 +81,20 @@
     <string name="twiter">Sigueme en twiter:</string>
     <string name="enlace"><a href="http://twitter.com/antoniom_sf">http://twitter.com/antoniom_sf</a></string>
 
+    <string name="title_activity_preferencias">Preferencias de la aplicación</string>
+    <!-- Valores para SharePreferences-->
+    <string name="title_user_category">CONFIGURACIÓN PARA LA SINCRONIZACIÓN</string>
+    <string name="title_config_username">Usuario</string>
+    <string name="config_username">Usuario para la sincronización de los datos</string>
+
+    <string name="title_swipe_refresh">Activar Sincronización</string>
+    <string name="summary_swipe_refresh">Deslizar para activar</string>
+
+    <string name="title_server_category">Configuración del Servidor</string>
+    <string name="title_config_server">Servidor</string>
+    <string name="summary_config_server">Nombre o dirección del Servidor</string>
+
+    <string name="title_config_port">Puerto de Comunicaciones</string>
+    <string name="summary_config_port">Número del Puerto</string>
 
 </resources>

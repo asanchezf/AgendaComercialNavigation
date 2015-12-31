@@ -38,19 +38,18 @@ public class SQLControlador {
 	public static final String C_COLUMNA_OBSERVACIONES = "Observaciones";
 
 
-	//private Resources resources;//para traer directamente los recursos al código java...
-
+	public static final String C_COLUMNA_IMPORTADO = "Importado";
+    public static final String C_COLUMNA_SINCRONIZADO = "Sincronizado";
 
 
     public static final String IMPORTADO_OBSERVACIONES = "Contacto importado desde la agenda de Android el día: ";
 	public static final String SINCRONIZADO_OBSERVACIONES = "Cliente sincronizado con la Web el día: ";
-    //public static final String IMPORTADO_OBSERVACIONES =(getResources().getString(R.string.agenda_texto_vacio));
-    //public static final String IMPORTADO_OBSERVACIONES ="@style/observaciones_importados";
 
-   // public static final String IMPORTADO_OBSERVACIONES ="";
-
-    private String importado_observaciones;
     public static final String EMAIL_POR_DEFECTO = "email@gmail.com";
+    public static final int  CATEGORIA_SINCRONIZADO = 7;
+	public static final int  VALOR_IMPORTADO = 1;
+    public static final int  VALOR_SINCRONIZADO = 1;
+
 	
 	public SQLControlador(Context c) {
 		super();
@@ -209,7 +208,8 @@ public class SQLControlador {
 			//int categoria=arrayListclientes.get(i).getIdCategoria();
 			String observaciones=arrayListclientes.get(i).getObservaciones();
 
-			int categoria=7;//SincronizadosWeb: categoria 7.
+
+			//int categoria=7;//SincronizadosWeb: categoria 7.
 
 			/*
 			* Una vez borrados los SincronizadosWeb comparamos los nombres que tengamos en el ArrayListcontactos
@@ -225,8 +225,9 @@ public class SQLControlador {
 				valores.put(C_COLUMNA_DIRECCION, direccion);
 				valores.put(C_COLUMNA_TELEFONO, telefono);
 				valores.put(C_COLUMNA_EMAIL, email);
-				valores.put(C_COLUMNA_CATEGORIA, categoria);
+				valores.put(C_COLUMNA_CATEGORIA, CATEGORIA_SINCRONIZADO);
 				valores.put(C_COLUMNA_OBSERVACIONES, SINCRONIZADO_OBSERVACIONES+fecha);
+                valores.put(C_COLUMNA_SINCRONIZADO, VALOR_SINCRONIZADO);//Insertamos un 1 en el campo Sincronizado
 				db.insert(C_TABLA, null, valores);
 			}
 
@@ -304,6 +305,8 @@ public class SQLControlador {
 			valores.put(C_COLUMNA_EMAIL, email);
 			valores.put(C_COLUMNA_CATEGORIA, categoria);
 			valores.put(C_COLUMNA_OBSERVACIONES, IMPORTADO_OBSERVACIONES+fecha);
+
+            valores.put(C_COLUMNA_IMPORTADO, VALOR_IMPORTADO);	//Insertamos un 1 en el campo Importado
 			db.insert(C_TABLA, null, valores);
 			}
 			
@@ -458,7 +461,7 @@ public class SQLControlador {
 
 				contactos = new Contactos(rs.getInt(0), rs.getString(1),
 						rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getInt(6), rs.getString(7));
+						rs.getString(5), rs.getInt(6), rs.getString(7), rs.getInt(8), rs.getInt(9));
 
 				arraList.add(contactos);
 
@@ -523,7 +526,7 @@ public class SQLControlador {
 
 				contactos = new Contactos(rs.getInt(0), rs.getString(1),
 						rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getInt(6), rs.getString(7));
+						rs.getString(5), rs.getInt(6), rs.getString(7), rs.getInt(8), rs.getInt(9));
 				arraList.add(contactos);
 
 				// int _id= rs.getInt(rs.getColumnIndex("_id"));
@@ -605,7 +608,7 @@ public class SQLControlador {
 		*/
 		//String query="Select * from Contactos where Importado=1 and Nombre= ?";
 
-		String query="Select * from Contactos where  Nombre= ?";
+		String query="Select * from Contactos where  Nombre= ? and Importado=1";
 		String[] args=new String[] {nombre};
 		Cursor rs = db.rawQuery(query, args);
 		
@@ -643,7 +646,7 @@ public class SQLControlador {
 		//TODO: poner constante de valor Id_categoria para sincronizados web
 		//String query="Select * from Contactos where Sincronizado=1 and Nombre= ?";
 
-		String query="Select * from Contactos where Id_Categoria =7 and Nombre= ?";
+		String query="Select * from Contactos where Nombre= ? and Sincronizado=1";
 		String[] args=new String[] {nombre};
 		Cursor rs = db.rawQuery(query, args);
 

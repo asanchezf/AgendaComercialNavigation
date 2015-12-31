@@ -330,6 +330,7 @@ public class AltaUsuarios extends AppCompatActivity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
+
 			return true;
 		}
 

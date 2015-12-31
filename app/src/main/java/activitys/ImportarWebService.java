@@ -3,10 +3,12 @@ package activitys;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -62,6 +64,16 @@ public class ImportarWebService extends AppCompatActivity {
         private TextView txtconfirm;
 
     	private Toolbar toolbar;
+
+	//Constantes para construir la url del Servicio Web desde la Activity de Prefencias que ponga el usuario....
+
+	//"http://192.168.0.157:8080/WebServicesRESTGlassFishJEE7/webresources/contactos/propietario/Antonio"  ----La IP y el Puerto se informarán después con un StringBuilder
+	//Dirección del WS Proyecto NetBeans WebServicesRESTGlassFishJEE7
+	private final String BASE_URL_ADRESS="http://%s:%s/WebServicesRESTGlassFishJEE7/webresources/contactos";
+	private  String SERVER_ADRESS;
+	private  String SERVER_PORT;
+	private  String USUARIO_OWNER;
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -99,9 +111,15 @@ public class ImportarWebService extends AppCompatActivity {
         txtconfirm.setVisibility(View.INVISIBLE);
 		//barraProgreso.setVisibility(View.INVISIBLE);
 
+
+		//
+		SharedPreferences preferencias= PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+		SERVER_ADRESS=preferencias.getString("server_address",null);
+		SERVER_PORT=preferencias.getString("server_port",null);;
+		USUARIO_OWNER=preferencias.getString("username",null);;
+
 		//Diálogo de confirmación....
-
-
 		AlertDialog.Builder dialogEliminar = new AlertDialog.Builder(this);
 
 		dialogEliminar.setIcon(android.R.drawable.ic_dialog_alert);
@@ -170,6 +188,20 @@ public class ImportarWebService extends AppCompatActivity {
 
 		}
 
+        @Override
+        protected void onCancelled (ArrayList<Clientes> varTerminarBackground) {
+            //TODO código del onCancelled (Hilo Principal)
+
+            //NO SE HA CONSEGUIDO CONECTAR. MOSTRAMOS UN TOAST Y REDIRECCIONAMOS AL MAIN
+            //VER si borrar....
+            String observacionesparasalir="El recurso no está disponible en estos momentos. Inténtalo más tarde...";
+
+                Toast.makeText(getApplicationContext(), observacionesparasalir, Toast.LENGTH_LONG).show();
+                Intent intent=new Intent(ImportarWebService.this, Inicio.class);
+                startActivity(intent);
+
+        }
+
 		//Recibe un List<String> y devuelve un ArrayList<Clientes>
 		@Override
 		protected ArrayList<Clientes> doInBackground(List<String>... params) {
@@ -190,8 +222,20 @@ public class ImportarWebService extends AppCompatActivity {
 				//URL url = new URL("http://192.168.0.157:8080/WebServicesRESTGlassFishJEE7/webresources/contactos");
 
 				//URL PARA BUSCAR POR PROPIETARIO:
-				URL url = new URL("http://192.168.0.157:8080/WebServicesRESTGlassFishJEE7/webresources/contactos/propietario/Antonio");
+//				SharedPreferences preferencias= PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+				//String ususario=preferencias.getString("username",null);
+				//String urlUsuario=String.format("Hola  '%s' adios",ususario);
+
+                //URL original sin utilizar las preferencias....
+                //URL url = new URL("http://192.168.0.157:8080/WebServicesRESTGlassFishJEE7/webresources/contactos/propietario/Antonio");
+
+                //Construimos la url añadiendo IP y el número de puerto
+                StringBuilder urlBuilder=new StringBuilder(String.format(BASE_URL_ADRESS,SERVER_ADRESS,SERVER_PORT));
+                String urlPreferencias=urlBuilder.append("/propietario/").append(USUARIO_OWNER).toString();
+                URL url = new URL(urlPreferencias);
+
 				con = (HttpURLConnection) url.openConnection();
+                con.setConnectTimeout(5000);
 
 				//con = (HttpURLConnection).openConnection(url);
 				//URLConnection con = url.openConnection();
@@ -205,10 +249,14 @@ public class ImportarWebService extends AppCompatActivity {
 				if (statusCode != 200) {
 					//comments = new ArrayList<Clientes>();
 					//comments.add("El recurso no est� disponible");
-
+                    cancel(true);
 					clientes = new Clientes();
 					listaClientes.add(clientes);
+
+
 					return listaClientes;
+
+
 				} else {
 
                     /*
@@ -220,7 +268,6 @@ public class ImportarWebService extends AppCompatActivity {
 
 			////////////////NUEVO utilizando Gson//////////////
 
-					// JsonAnimalParser parser = new JsonAnimalParser();
 					GsonClientesParser parser = new GsonClientesParser();
 
 					listaClientes = parser.leerFlujoJson(in);
@@ -228,7 +275,9 @@ public class ImportarWebService extends AppCompatActivity {
 				}
 
 			} catch (Exception e) {
+                //cancel(true);
 				e.printStackTrace();
+
 				result = false;
 				Log.e("SERVICIO REST", "ERROR DE CONEXION", e);
 
@@ -241,35 +290,41 @@ public class ImportarWebService extends AppCompatActivity {
 
 			//==============================================VAMOS A SQLITE PARA COMPARAR RESULTADOS==============
 
-			//Construimos la fecha de operación de sincronización con la BB.DD. de MySql
-			Calendar c1 = Calendar.getInstance();
-			Calendar c2 = new GregorianCalendar();
-
-			String dia = Integer.toString(c2.get(Calendar.DATE));
-			String mes = Integer.toString(c2.get(Calendar.MONTH) + 1);
-			String annio = Integer.toString(c2.get(Calendar.YEAR));
 
 
-			String fecha = dia + "/" + mes + "/" + annio;
+            //Si no ha dado error de conexión seguimos el proceso y actualizamos SQlite de la app con los nuevos contactos...
+            if(result) {
+
+                //Construimos la fecha de operación de sincronización con la BB.DD. de MySql
+                Calendar c1 = Calendar.getInstance();
+                Calendar c2 = new GregorianCalendar();
+
+                String dia = Integer.toString(c2.get(Calendar.DATE));
+                String mes = Integer.toString(c2.get(Calendar.MONTH) + 1);
+                String annio = Integer.toString(c2.get(Calendar.YEAR));
 
 
-			Connection = new SQLControlador(getApplicationContext());//Objeto SQLControlador
-			try {
-				Connection.abrirBaseDeDatos(2);
-
-				//Connection.ImportaColeccionContent(nombres, telefonos, emails);//Enviando tres colecciones. Problemas al recuperar los valores de email
-				//Connection.ImportaCursorContent(cur, pCur, emailCur);//Enviando los tres cursores del Contentprovider..Problemas recibiendo..
-
-				//Connection.ImportCollectionContactsContent(ArrayListcontactos);
-
-				Connection.insertarSincronizados(listaClientes, fecha);
+                String fecha = dia + "/" + mes + "/" + annio;
 
 
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+                Connection = new SQLControlador(getApplicationContext());//Objeto SQLControlador
+                try {
+                    Connection.abrirBaseDeDatos(2);
 
+                    //Connection.ImportaColeccionContent(nombres, telefonos, emails);//Enviando tres colecciones. Problemas al recuperar los valores de email
+                    //Connection.ImportaCursorContent(cur, pCur, emailCur);//Enviando los tres cursores del Contentprovider..Problemas recibiendo..
+
+                    //Connection.ImportCollectionContactsContent(ArrayListcontactos);
+
+                    Connection.insertarSincronizados(listaClientes, fecha);
+
+
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+            }//Fin result.
 			//Para la barra de progreso
 			for (int z = 1; z <= 100; z++) {
 				try {

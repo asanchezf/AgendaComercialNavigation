@@ -13,27 +13,27 @@ public class DBhelper extends SQLiteOpenHelper {
 	private static CursorFactory factory = null;
 
 	//PRIMERA VERSIÓN
+//	private String sql = "CREATE TABLE Contactos (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
+//			+ "Nombre TEXT NOT NULL, "
+//			+ "Apellidos TEXT, "
+//			+ "Direccion TEXT, "
+//			+ "Telefono TEXT, "
+//			+ "Email TEXT,"
+//			+ "Id_Categoria INTEGER,"//Campo nuevo
+//			+ "Observaciones TEXT)";//Campo nuevo
+
+
+	//SEGUNDA VERSIÓN
 	private String sql = "CREATE TABLE Contactos (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
 			+ "Nombre TEXT NOT NULL, "
 			+ "Apellidos TEXT, "
 			+ "Direccion TEXT, "
 			+ "Telefono TEXT, "
 			+ "Email TEXT,"
-			+ "Id_Categoria INTEGER,"//Campo nuevo
-			+ "Observaciones TEXT)";//Campo nuevo
-
-
-	//SEGUNDA VERSIÓN
-//	private String sql2 = "CREATE TABLE Contactos (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
-//			+ "Nombre TEXT NOT NULL, "
-//			+ "Apellidos TEXT, "
-//			+ "Direccion TEXT, "
-//			+ "Telefono TEXT, "
-//			+ "Email TEXT,"
-//			+ "Id_Categoria INTEGER,"
-//			+ "Observaciones TEXT,"
-//			+ "Importado INTEGER," //Campo nuevo
-//			+ "Sincronizado INTEGER)";//Campo nuevo
+			+ "Id_Categoria INTEGER,"
+			+ "Observaciones TEXT,"
+			+ "Importado INTEGER,"//Campo nuevo para sincronizar con agenda android
+			+ "Sincronizado INTEGER)";//Campo nuevo para sincronizar con WS REST
 
 
 
@@ -44,8 +44,8 @@ public class DBhelper extends SQLiteOpenHelper {
  * 			3:Madrid CC.AA.
  * 			4:Otra CC.AA..
  * 			5:Otro País
- * 		    6:Sin zona o importado de la Agenda
- * 		    7:Servidor Web
+ * 		    6:Sin zona o importado de Android
+ * 		    7:Importado de Servidor Web
  * valorar posibilidad de crear otra tabla...
  * */
 	
@@ -61,21 +61,23 @@ public class DBhelper extends SQLiteOpenHelper {
 		db.execSQL(sql);
 		Log.i(this.getClass().toString(), "Tabla Contactos creada");
 		
-		// Insertamos en primer registro....
-		//db.execSQL("INSERT INTO Contactos(Nombre) VALUES('Susana')");
-		db.execSQL("INSERT INTO Contactos(Nombre,Apellidos,Direccion,Telefono,Email,Id_Categoria,Observaciones) VALUES('Alcorcón','Apellidos','Rubens, 12 M�stoles, MADRID', '676048719','email@gmail.com',1,'Observaciones incluidas por defecto')");
-		db.execSQL("INSERT INTO Contactos(Nombre,Apellidos,Direccion,Telefono,Email,Id_Categoria,Observaciones) VALUES('Madrid capital','Apellidos','Rubens, 12 M�stoles, MADRID', '659355808','email@gmail.com',2,'Observaciones incluidas por defecto')");
-		db.execSQL("INSERT INTO Contactos(Nombre,Apellidos,Direccion,Telefono,Email,Id_Categoria,Observaciones) VALUES('Madrid CC.AA.','Apellidos','Rubens, 12 M�stoles, MADRID', '659355808','email@gmail.com',3,'Observaciones incluidas por defecto')");
-		db.execSQL("INSERT INTO Contactos(Nombre,Apellidos,Direccion,Telefono,Email,Id_Categoria,Observaciones) VALUES('Otra CC..AA.','Apellidos','Rubens, 12 M�stoles, MADRID', '659355808','email@gmail.com',4,'Observaciones incluidas por defecto')");
-		db.execSQL("INSERT INTO Contactos(Nombre,Apellidos,Direccion,Telefono,Email,Id_Categoria,Observaciones) VALUES('Otro País','Apellidos','Rubens, 12 M�stoles, MADRID', '659355808','email@gmail.com',5,'Observaciones incluidas por defecto')");
-		db.execSQL("INSERT INTO Contactos(Nombre,Apellidos,Direccion,Telefono,Email,Id_Categoria,Observaciones) VALUES('Otros','Apellidos','Rubens, 12 M�stoles, MADRID', '659355808','email@gmail.com',6,'Observaciones incluidas por defecto')");
+		// DATOS INICIALES
 
-		db.execSQL("INSERT INTO Contactos(Nombre,Apellidos,Direccion,Telefono,Email,Id_Categoria,Observaciones) VALUES('Servidor Web','Apellidos','Rubens, 12 M�stoles, MADRID', '659355808','email@gmail.com',7,'Observaciones incluidas por defecto')");
+		db.execSQL("INSERT INTO Contactos(Nombre,Apellidos,Direccion,Telefono,Email,Id_Categoria,Observaciones,Importado,Sincronizado) VALUES('Alcorcón','Apellidos','Rubens, 12 M�stoles, MADRID', '676048719','susimail62@gmail.com',1,'Observaciones incluidas por defecto',null,null)");
+		db.execSQL("INSERT INTO Contactos(Nombre,Apellidos,Direccion,Telefono,Email,Id_Categoria,Observaciones,Importado,Sincronizado) VALUES('Madrid capital','Apellidos','Rubens, 12 M�stoles, MADRID', '659355808','antoniom.sanchezf@gmail.com',2,'Observaciones incluidas por defecto',null,null)");
+		db.execSQL("INSERT INTO Contactos(Nombre,Apellidos,Direccion,Telefono,Email,Id_Categoria,Observaciones,Importado,Sincronizado) VALUES('Madrid CC.AA.','Apellidos','Rubens, 12 M�stoles, MADRID', '659355808','antoniom.sanchezf@gmail.com',3,'Observaciones incluidas por defecto',null,null)");
+		db.execSQL("INSERT INTO Contactos(Nombre,Apellidos,Direccion,Telefono,Email,Id_Categoria,Observaciones,Importado,Sincronizado) VALUES('Otra CC..AA.','Apellidos','Rubens, 12 M�stoles, MADRID', '659355808','antoniom.sanchezf@gmail.com',4,'Observaciones incluidas por defecto',null,null)");
+		db.execSQL("INSERT INTO Contactos(Nombre,Apellidos,Direccion,Telefono,Email,Id_Categoria,Observaciones,Importado,Sincronizado) VALUES('Otro País','Apellidos','Rubens, 12 M�stoles, MADRID', '659355808','antoniom.sanchezf@gmail.com',5,'Observaciones incluidas por defecto',null,null)");
+
+		db.execSQL("INSERT INTO Contactos(Nombre,Apellidos,Direccion,Telefono,Email,Id_Categoria,Observaciones,Importado,Sincronizado) VALUES('Importado Android','Apellidos','Rubens, 12 M�stoles, MADRID', '659355808','antoniom.sanchezf@gmail.com',6,'Importado Android',1,null)");
+		db.execSQL("INSERT INTO Contactos(Nombre,Apellidos,Direccion,Telefono,Email,Id_Categoria,Observaciones,Importado,Sincronizado) VALUES('Sincronizado WS','Apellidos','Rubens, 12 M�stoles, MADRID', '659355808','antoniom.sanchezf@gmail.com',7,'Sincronizado',null,1)");
 
 
-		Log.i(this.getClass().toString(), "Datos iniciales creados. BB.DD. creada");
-		
-		
+
+		Log.i(this.getClass().toString(), "Datos iniciales incluyendo campos nuevos... insertados. BB.DD. creada");
+
+
+
 	}
 
 	@Override
