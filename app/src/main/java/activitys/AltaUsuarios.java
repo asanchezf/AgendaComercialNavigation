@@ -288,9 +288,12 @@ public class AltaUsuarios extends AppCompatActivity {
 
 	//Validaci�n para que el nombre no se deje vac�o
 	private boolean  validar(boolean validar){
+		//Probar esto: if (nombre.getText().toString().trim().equalsIgnoreCase(""))
 		if (  (nombre.getText().toString().equals("")) ||  (telefono.getText().toString().equals("")) ){
+
+
 			//if (nombre.getText().toString().length() == 0){
-		
+
 			//Toast.makeText(getApplicationContext(), "Es obligatorio rellenar el nombre" , Toast.LENGTH_LONG).show();
 			
 			//Se prepara la alerta creando nueva instancia     

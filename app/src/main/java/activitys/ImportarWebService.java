@@ -370,6 +370,8 @@ public class ImportarWebService extends AppCompatActivity {
 //PARAMETROS: LO QUE RECIBE, VARIABLE PARA CONTROLAR EL PROGRESO, LO QUE DEVUELVE al postUpdate
 	//<List<String>, Integer, Boolean>
 
+	//Ha sido sustituido por SincronizarconWebService2 para JSON con GsonClientesParser
+
 	public  class SincronizarconWebService extends AsyncTask<List<String>, Integer, ArrayList<Clientes>> {
 		//String []arrayDeStrings;
 		HttpURLConnection con;
