@@ -53,6 +53,7 @@ public class CustomArrayAdapter_2 extends ArrayAdapter<ContactosBorrar> implemen
 
         } else {
             holder = (Holder) convertView.getTag();
+
         }
 
          final ContactosBorrar contactosBorrar = getItem(position);

@@ -86,7 +86,7 @@ public class ActivityLista extends AppCompatActivity implements OnQueryTextListe
     private int textlength = 0;
     private SearchView searchView;
 
-
+    private static long back_pressed;//Contador para cerrar la app al pulsar dos veces seguidas el btón de cerrar. Se gestiona en el evento onBackPressed
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -560,7 +560,7 @@ public class ActivityLista extends AppCompatActivity implements OnQueryTextListe
     public boolean onContextItemSelected(MenuItem item) {
 
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        Intent i;
+        //Intent i;
 
         switch (item.getItemId()) {
 
@@ -778,6 +778,21 @@ public class ActivityLista extends AppCompatActivity implements OnQueryTextListe
     }
 
 
+
+
+    @Override
+    public void onBackPressed() {
+/**
+ * Cierra la app cuando se ha pulsado dos veces seguidas en un intervalo inferior a dos segundos.
+ */
+
+        if (back_pressed + 2000 > System.currentTimeMillis())
+            super.onBackPressed();
+        else
+            Toast.makeText(getBaseContext(), R.string.agenda_salir, Toast.LENGTH_SHORT).show();
+        back_pressed = System.currentTimeMillis();
+        // super.onBackPressed();
+    }
 
     @Override//para el menú buscar
     public boolean onMenuItemActionCollapse(MenuItem item) {

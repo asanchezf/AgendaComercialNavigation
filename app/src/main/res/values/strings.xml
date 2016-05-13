@@ -96,5 +96,6 @@
 
     <string name="title_config_port">Puerto de Comunicaciones</string>
     <string name="summary_config_port">Número del Puerto</string>
+    <string name="agenda_salir" />
 
 </resources>

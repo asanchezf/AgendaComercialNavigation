@@ -296,7 +296,7 @@ public class ImportarWebService extends AppCompatActivity {
             if(result) {
 
                 //Construimos la fecha de operación de sincronización con la BB.DD. de MySql
-                Calendar c1 = Calendar.getInstance();
+                //Calendar c1 = Calendar.getInstance();
                 Calendar c2 = new GregorianCalendar();
 
                 String dia = Integer.toString(c2.get(Calendar.DATE));
@@ -579,7 +579,7 @@ public class ImportarWebService extends AppCompatActivity {
 			//==============================================VAMOS A SQLITE PARA COMPARAR RESULTADOS==============
 
 			//Construimos la fecha de operación de sincronización con la BB.DD. de MySql
-			Calendar c1 = Calendar.getInstance();
+			//Calendar c1 = Calendar.getInstance();
 			Calendar c2 = new GregorianCalendar();
 
 			String dia = Integer.toString(c2.get(Calendar.DATE));
